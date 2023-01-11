@@ -4,6 +4,8 @@ import { readdirSync } from 'fs';
 export const configureRoutes = (app: Express): void => {
 	const router = Router();
 
+	app.use('/', router);
+
 	applyFunctionToAllFilesInDir('/../routes', async filePath => (await import(`.${filePath}`)).default(router));
 };
 
