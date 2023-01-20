@@ -1,7 +1,7 @@
 {
 	"name": "vet-master-api",
 	"version": "1.0.0",
-	"description": "",
+	"description": "API for Vet Master platform",
 	"main": "src/main/server.ts",
 	"scripts": {
 		"dev": "set NODE_ENV=dev&&nodemon src/main/server.ts",
