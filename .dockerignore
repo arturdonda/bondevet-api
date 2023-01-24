@@ -2,6 +2,8 @@
 /node_modules
 .git
 .dockerignore
+.env
+.env.example
 .gitignore
 buildspec.yml
 console.log
