@@ -12,6 +12,4 @@ EXPOSE 3000
 
 ENV NODE_ENV prod
 
-ENV SECRET $SECRET
-
 CMD [ "node", "build/src/main/server.js" ]

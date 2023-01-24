@@ -10,6 +10,9 @@ phases:
       - echo Logging into AWS...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - echo SECRET = $SECRET
+      - export TEST1 = $SECRET
+      - echo Foo = $Foo
+      - export TEST2 = $Foo
   build:
     commands:
       - echo Building Docker...
