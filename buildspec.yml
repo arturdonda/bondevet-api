@@ -1,5 +1,10 @@
 version: 0.2
 
+env:
+  parameter-store:
+    SECRET: '/CodeBuild/SECRET'
+    FOO: '/CodeBuild/Foo'
+
 phases:
   install:
     runtime-versions:
@@ -12,7 +17,7 @@ phases:
       - echo Adding environment variables...
       - touch .env
       - printf 'SECRET = %s\n' $SECRET >> .env
-      - printf 'FOO = %s\n' $Foo >> .env
+      - printf 'FOO = %s\n' $FOO >> .env
   build:
     commands:
       - echo Building Docker...
