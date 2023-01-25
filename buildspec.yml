@@ -11,8 +11,8 @@ phases:
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
       - echo Adding environment variables...
       - touch .env
-      - printf 'SECRET = $SECRET\n' >> .env
-      - printf 'FOO = $Foo\n' >> .env
+      - printf 'SECRET = %s\n' $SECRET >> .env
+      - printf 'FOO = %s\n' $Foo >> .env
   build:
     commands:
       - echo Building Docker...
