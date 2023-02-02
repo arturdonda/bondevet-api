@@ -5,7 +5,7 @@ import { HttpRequest, HttpResponse, IController } from '@presentation/protocols'
 export class HealthCheckController implements IController {
 	async handle(request: HttpRequest): Promise<HttpResponse<any>> {
 		return ok({
-			message: 'Welcome to Vet Master API',
+			message: 'Welcome to BondeVet API',
 			result: {
 				name: pkgJson.name,
 				description: pkgJson.description,

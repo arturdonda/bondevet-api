@@ -1,7 +1,7 @@
 {
-	"name": "vet-master-api",
-	"version": "1.0.0",
-	"description": "API for Vet Master platform",
+	"name": "bondevet-api",
+	"version": "0.0.1",
+	"description": "API for BondeVet platform",
 	"main": "src/main/server.ts",
 	"scripts": {
 		"dev": "set NODE_ENV=dev&&nodemon src/main/server.ts",
