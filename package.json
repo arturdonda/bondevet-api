@@ -1,7 +1,7 @@
 {
 	"name": "bondevet-api",
 	"version": "0.0.1",
-	"description": "API for BondeVet platform",
+	"description": "API for the BondeVet platform",
 	"main": "src/main/server.ts",
 	"scripts": {
 		"dev": "set NODE_ENV=dev&&nodemon src/main/server.ts",
