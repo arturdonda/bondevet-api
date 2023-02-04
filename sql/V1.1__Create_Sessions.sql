@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS Sessions (
+	 refreshToken	TEXT		NOT NULL	UNIQUE
+	,csrf			TEXT		NOT NULL	UNIQUE
+	,userId			VARCHAR(50)	NOT NULL	REFERENCES users(id)
+)
