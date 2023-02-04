@@ -5,6 +5,6 @@ export interface IChangeUserPassword {
 }
 
 export namespace IChangeUserPassword {
-	export type Params = Pick<User, 'password'>;
+	export type Params = Pick<User, 'id' | 'password'>;
 	export type Result = Promise<void>;
 }
