@@ -12,7 +12,7 @@ export class CreateSession implements ICreateSession {
 	async exec({ userId }: ICreateSession.Params): ICreateSession.Result {
 		const session = new Session({
 			userId,
-			refreshToken: this.randomService.string({ length: 32 }), // randomBytes(32).toString('hex'),
+			refreshToken: this.randomService.string({ length: 32 }),
 			csrf: this.randomService.string({ length: 32 }),
 		});
 
