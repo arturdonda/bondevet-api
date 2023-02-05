@@ -1,4 +1,4 @@
-export type Page<T> = PageParams<T> & {
+export type Page<T> = Pick<PageParams<T>, 'pageSize' | 'pageNumber'> & {
 	totalCount: number;
 	data: T[];
 };

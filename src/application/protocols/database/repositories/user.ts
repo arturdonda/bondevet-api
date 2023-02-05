@@ -10,7 +10,14 @@ export interface IUserRepository {
 
 export namespace IUserRepository {
 	export namespace GetAll {
-		export type Params = PageParams<User>;
+		export type Params = PageParams<User> &
+			Partial<
+				Pick<User, 'address' | 'cpf' | 'email' | 'phone' | 'rg'> & {
+					birthdayFrom: Date;
+					birthdayTo: Date;
+					name: string;
+				}
+			>;
 		export type Result = Promise<Page<User>>;
 	}
 	export namespace GetOne {
