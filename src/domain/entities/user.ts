@@ -33,8 +33,11 @@ export class User {
 	}
 
 	//#region Methods
-	delete(): void {
-		this._deletedAt = new Date();
+	setDeleted(): void {
+		const now = new Date();
+
+		this._deletedAt = now;
+		this._updatedAt = now;
 	}
 	//#endregion Methods
 
@@ -113,11 +116,6 @@ export class User {
 		this._address = this.validateAddress(address);
 		this._updatedAt = new Date();
 	}
-
-	set deletedAt(deletedAt: UserParams['deletedAt']) {
-		this._deletedAt = deletedAt;
-		this._updatedAt = new Date();
-	}
 	//#endregion Setters
 
 	//#region Validations
@@ -183,18 +181,20 @@ export class User {
 	}
 
 	private validateCreatedAt(createdAt: UserParams['createdAt']): NonNullable<UserParams['updatedAt']> {
-		if (createdAt === null) return new Date();
+		if (!createdAt) return new Date();
 
 		return createdAt;
 	}
 
 	private validateUpdatedAt(updatedAt: UserParams['updatedAt']): NonNullable<UserParams['updatedAt']> {
-		if (updatedAt === null) return new Date();
+		if (!updatedAt) return new Date();
 
 		return updatedAt;
 	}
 
-	private validateDeletedAt(deletedAt: UserParams['deletedAt']): UserParams['deletedAt'] {
+	private validateDeletedAt(deletedAt: UserParams['deletedAt']): Date | null {
+		if (deletedAt === undefined) return null;
+
 		return deletedAt;
 	}
 	//#endregion Validations
@@ -211,7 +211,7 @@ export type UserParams = {
 	password: string;
 	birthday: Date;
 	address: string;
-	createdAt: Date | null;
-	updatedAt: Date | null;
-	deletedAt: Date | null;
+	createdAt?: Date;
+	updatedAt?: Date;
+	deletedAt?: Date | null;
 };

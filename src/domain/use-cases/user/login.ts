@@ -6,5 +6,5 @@ export interface ILoginUser {
 
 export namespace ILoginUser {
 	export type Params = Pick<User, 'email' | 'password'>;
-	export type Result = Promise<{ user: User; accessToken: string; sessionToken: string }>;
+	export type Result = Promise<{ user: User; accessToken: string; refreshToken: string }>;
 }

@@ -5,6 +5,6 @@ export interface IInviteUser {
 }
 
 export namespace IInviteUser {
-	export type Params = Pick<User, 'email'>;
+	export type Params = Pick<User, 'firstName' | 'lastName' | 'email'>;
 	export type Result = Promise<void>;
 }
