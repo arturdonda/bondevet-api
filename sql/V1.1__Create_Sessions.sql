@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS Sessions (
-	 refreshToken	VARCHAR(32)	NOT NULL	UNIQUE
+	 refresh_token	VARCHAR(32)	NOT NULL	UNIQUE
 	,csrf			VARCHAR(32)	NOT NULL	UNIQUE
-	,userId			VARCHAR(32)	NOT NULL	REFERENCES users(id)
+	,user_id			VARCHAR(32)	NOT NULL	REFERENCES users(id)
 )

@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS Users (
 	 id			VARCHAR(32)		NOT NULL	UNIQUE
-	,firstName	VARCHAR(50)		NOT NULL
-	,lastName	VARCHAR(50)		NOT NULL
+	,first_name	VARCHAR(50)		NOT NULL
+	,last_name	VARCHAR(50)		NOT NULL
 	,cpf		VARCHAR(11)		NOT NULL	UNIQUE
 	,rg			VARCHAR(11)		NOT NULL	UNIQUE
 	,phone		VARCHAR(11)		NOT NULL	UNIQUE
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS Users (
 	,password	VARCHAR			NOT NULL
 	,birthday	DATE			NOT NULL
 	,address	VARCHAR(100)	NOT NULL
-	,createdAt	TIMESTAMP		NOT NULL
-	,updatedAt	TIMESTAMP		NOT NULL
-	,deletedAt	TIMESTAMP		
+	,created_at	TIMESTAMP		NOT NULL
+	,updated_at	TIMESTAMP		NOT NULL
+	,deleted_at	TIMESTAMP		
 )
