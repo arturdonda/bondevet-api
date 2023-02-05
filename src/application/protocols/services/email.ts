@@ -1,13 +1,10 @@
 import { User } from '@domain/entities';
 
 export interface IEmailService {
-	send: ({ to, cc, bcc, subject, body }: IEmailService.Send.Params) => IEmailService.Send.Result;
+	send: (params: IEmailService.Send.Params) => IEmailService.Send.Result;
 	sendTemplate: {
 		invite: (params: IEmailService.Invite.Params) => IEmailService.Invite.Result;
 		resetPassword: (params: IEmailService.ResetPassword.Params) => IEmailService.ResetPassword.Result;
-		changePasswordWarning: (
-			params: IEmailService.ChangePasswordWarning.Params
-		) => IEmailService.ChangePasswordWarning.Result;
 	};
 }
 
@@ -18,7 +15,7 @@ export namespace IEmailService {
 			cc?: string | string[];
 			bcc?: string | string[];
 			subject: string;
-			body: string;
+			htmlBody: string;
 		};
 		export type Result = Promise<void>;
 	}
@@ -29,10 +26,6 @@ export namespace IEmailService {
 	}
 	export namespace ResetPassword {
 		export type Params = Pick<User, 'email'> & { resetToken: string };
-		export type Result = Promise<void>;
-	}
-	export namespace ChangePasswordWarning {
-		export type Params = Pick<User, 'email'>;
 		export type Result = Promise<void>;
 	}
 }
