@@ -14,7 +14,7 @@ export class RefreshSession implements IRefreshSession {
 
 		if (!session) throw new NotFoundError('Session');
 
-		const token = this.tokenService.encode({ user: session.userId });
+		const token = this.tokenService.encode({ payload: { user: session.userId }, type: 'ACCESS_TOKEN' });
 
 		return { accessToken: token };
 	}

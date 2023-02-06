@@ -5,7 +5,10 @@ export class InviteUser implements IInviteUser {
 	constructor(private readonly tokenService: ITokenService, private readonly emailService: IEmailService) {}
 
 	async exec({ email, firstName, lastName }: IInviteUser.Params): IInviteUser.Result {
-		const inviteToken = this.tokenService.encode({ email, firstName, lastName });
+		const inviteToken = this.tokenService.encode({
+			payload: { email, firstName, lastName },
+			type: 'OTHER',
+		});
 
 		return this.emailService.sendTemplate.invite({
 			email,

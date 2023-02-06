@@ -14,7 +14,10 @@ export class ResetUserPassword implements IResetUserPassword {
 
 		if (!user) return;
 
-		const resetToken = this.tokenService.encode({ id: user.id });
+		const resetToken = this.tokenService.encode({
+			payload: { id: user.id },
+			type: 'OTHER',
+		});
 
 		await this.emailService.sendTemplate.resetPassword({ email, resetToken });
 	}
