@@ -5,6 +5,6 @@ export interface IRefreshSession {
 }
 
 export namespace IRefreshSession {
-	export type Params = { refreshToken: Session['_refreshToken'] };
+	export type Params = { refreshToken: Session['refreshToken'] };
 	export type Result = Promise<{ accessToken: string }>;
 }

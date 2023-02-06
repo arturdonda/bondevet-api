@@ -5,6 +5,6 @@ export interface ICreateSession {
 }
 
 export namespace ICreateSession {
-	export type Params = { userId: User['_id'] };
+	export type Params = { userId: User['id'] };
 	export type Result = Promise<Session>;
 }
