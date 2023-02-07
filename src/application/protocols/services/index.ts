@@ -1,3 +1,4 @@
+export * from './cep';
 export * from './email';
 export * from './hash';
 export * from './ip';
