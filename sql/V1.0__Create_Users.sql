@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS users (
 	,email		VARCHAR(50)		NOT NULL	UNIQUE
 	,password	VARCHAR			NOT NULL
 	,birthday	DATE			NOT NULL
-	,address	VARCHAR(100)	NOT NULL
+	,address	JSONB			NOT NULL
 	,created_at	TIMESTAMP		NOT NULL
 	,updated_at	TIMESTAMP		NOT NULL
 	,deleted_at	TIMESTAMP		

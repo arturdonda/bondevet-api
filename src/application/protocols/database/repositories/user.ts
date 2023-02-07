@@ -1,4 +1,4 @@
-import { Page, PageParams, User } from '@domain/entities';
+import { Address, Page, PageParams, User } from '@domain/entities';
 import { Choose } from '@application/protocols/utility-types';
 
 export interface IUserRepository {
@@ -12,11 +12,11 @@ export namespace IUserRepository {
 	export namespace GetAll {
 		export type Params = PageParams<User> &
 			Partial<
-				Pick<User, 'address' | 'cpf' | 'email' | 'phone' | 'rg'> & {
+				Pick<User, 'cpf' | 'email' | 'phone' | 'rg'> & {
 					birthdayFrom: Date;
 					birthdayTo: Date;
 					name: string;
-				}
+				} & Pick<Address, 'city' | 'state' | 'neighborhood'>
 			>;
 		export type Result = Promise<Page<User>>;
 	}

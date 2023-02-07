@@ -1,3 +1,4 @@
+import { Address } from '@domain/entities';
 import { isCPFValid, isEmailValid } from '@domain/helpers';
 import { InvalidParamError } from '@domain/errors';
 
@@ -11,7 +12,7 @@ export class User {
 	private _email: string;
 	private _password: string;
 	private _birthday: Date;
-	private _address: string;
+	private _address: Address;
 	private _createdAt: Date;
 	private _updatedAt: Date;
 	private _deletedAt: Date | null;
@@ -78,7 +79,7 @@ export class User {
 		return this._birthday;
 	}
 
-	get address(): string {
+	get address(): Address {
 		return this._address;
 	}
 
@@ -174,10 +175,14 @@ export class User {
 	}
 
 	private validateAddress(address: UserParams['address']): UserParams['address'] {
-		address = address.trim();
+		if (address.cep) throw new InvalidParamError('address', 'CEP is required');
+		if (address.city) throw new InvalidParamError('address', 'city is required');
+		if (address.neighborhood) throw new InvalidParamError('address', 'neighborhood is required');
+		if (address.number) throw new InvalidParamError('address', 'number is required');
+		if (address.state) throw new InvalidParamError('address', 'state is required');
+		if (address.street) throw new InvalidParamError('address', 'street is required');
 
-		if (address.length < 5) throw new InvalidParamError('address', 'must be at least 5 characters long');
-		return '';
+		return address;
 	}
 
 	private validateCreatedAt(createdAt: UserParams['createdAt']): NonNullable<UserParams['updatedAt']> {
@@ -210,7 +215,7 @@ export type UserParams = {
 	email: string;
 	password: string;
 	birthday: Date;
-	address: string;
+	address: Address;
 	createdAt?: Date;
 	updatedAt?: Date;
 	deletedAt?: Date | null;

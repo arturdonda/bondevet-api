@@ -5,10 +5,11 @@ import { parsePageParams } from '@application/helpers';
 export class GetAllUsers implements IGetAllUsers {
 	constructor(private readonly userRepository: IDatabase.Repositories.User) {}
 
-	async exec(params?: IGetAllUsers.Params): IGetAllUsers.Result {
+	async exec(params: IGetAllUsers.Params): IGetAllUsers.Result {
 		const pageParams = parsePageParams(params);
 
 		return this.userRepository.getAll({
+			...params,
 			...pageParams,
 			sortBy: params?.sortBy ?? 'firstName',
 			sortDirection: params?.sortDirection ?? 'ASC',

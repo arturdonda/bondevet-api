@@ -67,11 +67,13 @@ export class UserRepository implements IUserRepository {
 	private makeGetAllFilters = (params: IUserRepository.GetAll.Params): WhereOptions | undefined => {
 		const filters: WhereOptions[] = [];
 
-		if (params.address) filters.push({ address: { [Op.iLike]: `%${params.address}%` } });
 		if (params.cpf) filters.push({ cpf: { [Op.iLike]: `%${params.cpf.replace(/\D/g, '')}%` } });
 		if (params.email) filters.push({ email: { [Op.iLike]: `%${params.email}%` } });
 		if (params.phone) filters.push({ phone: { [Op.iLike]: `%${params.phone}%` } });
 		if (params.rg) filters.push({ rg: { [Op.iLike]: `%${params.rg}%` } });
+		if (params.city) filters.push({ 'address.city': { [Op.iLike]: `%${params.city}%` } });
+		if (params.neighborhood) filters.push({ 'address.neighborhood': { [Op.iLike]: `%${params.neighborhood}%` } });
+		if (params.state) filters.push({ 'address.state': { [Op.iLike]: `%${params.state}%` } });
 		if (params.name)
 			filters.push({
 				[Op.or]: [{ firstName: { [Op.iLike]: `%${params.name}%` } }, { lastName: { [Op.iLike]: `%${params.name}%` } }],
@@ -90,7 +92,12 @@ export class UserRepository implements IUserRepository {
 		if (!params.sortBy || !params.sortDirection) return undefined;
 
 		const order: Order = [];
-		order.push([params.sortBy, params.sortDirection]);
+		if (['city', 'neighborhood', 'state'].includes(params.sortBy)) {
+			order.push(`address.${params.sortBy}`, params.sortDirection);
+		} else {
+			order.push([params.sortBy, params.sortDirection]);
+		}
+
 		order.push(['firstName', 'ASC']);
 
 		return order;
