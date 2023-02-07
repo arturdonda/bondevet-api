@@ -6,5 +6,6 @@ declare namespace NodeJS {
 		FRONTEND_BASE_URL: string;
 		ACCESS_TOKEN_SECRET: string;
 		OTHER_TOKENS_SECRET: string;
+		IPDATA_KEY: string;
 	}
 }
