@@ -23,4 +23,9 @@ export const sessionModel: ModelAttributes = {
 			key: 'id',
 		},
 	},
+	metadata: {
+		type: DataTypes.JSONB,
+		allowNull: false,
+		field: 'metadata',
+	},
 };

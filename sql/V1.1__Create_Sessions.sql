@@ -2,4 +2,5 @@ CREATE TABLE IF NOT EXISTS sessions (
 	 refresh_token	VARCHAR(32)	NOT NULL	UNIQUE
 	,csrf			VARCHAR(32)	NOT NULL	UNIQUE
 	,user_id		VARCHAR(32)	NOT NULL	REFERENCES users(id)
+	,metadata		JSONB		NOT NULL
 )

@@ -12,15 +12,15 @@ export class LoginUser implements ILoginUser {
 		private readonly refreshSession: IRefreshSession
 	) {}
 
-	async exec({ email, password }: ILoginUser.Params): ILoginUser.Result {
+	async exec({ email, password, browser, deviceType, ipAddress }: ILoginUser.Params): ILoginUser.Result {
 		const user = await this.userRepository.getOne({ email });
 
 		if (!user) throw new NotFoundError('User');
 		if (!this.hashService.verify({ text: password, hash: user.password })) throw new InvalidPasswordError();
 
-		const { refreshToken } = await this.createSession.exec({ userId: user.id });
+		const { refreshToken } = await this.createSession.exec({ userId: user.id, browser, deviceType, ipAddress });
 
-		const { accessToken } = await this.refreshSession.exec({ refreshToken });
+		const { accessToken } = await this.refreshSession.exec({ refreshToken, browser, deviceType, ipAddress });
 
 		return { user, refreshToken, accessToken };
 	}
