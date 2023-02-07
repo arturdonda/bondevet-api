@@ -53,6 +53,10 @@ export class SessionRepository implements ISessionRepository {
 			});
 	}
 
+	delete(refreshToken: ISessionRepository.Delete.Params): ISessionRepository.Delete.Result {
+		return this.sessions.destroy({ where: refreshToken }).then(() => {});
+	}
+
 	private makeGetAllFilters = (params: ISessionRepository.GetAll.Params): WhereOptions | undefined => {
 		return { userId: params.userId };
 	};

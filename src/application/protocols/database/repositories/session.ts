@@ -5,6 +5,7 @@ export interface ISessionRepository {
 	getOne: (params: ISessionRepository.GetOne.Params) => ISessionRepository.GetOne.Result;
 	create: (params: ISessionRepository.Create.Params) => ISessionRepository.Create.Result;
 	update: (params: ISessionRepository.Update.Params) => ISessionRepository.Update.Result;
+	delete: (params: ISessionRepository.Delete.Params) => ISessionRepository.Delete.Result;
 }
 
 export namespace ISessionRepository {
@@ -23,5 +24,9 @@ export namespace ISessionRepository {
 	export namespace Update {
 		export type Params = Session;
 		export type Result = Promise<Session>;
+	}
+	export namespace Delete {
+		export type Params = Pick<Session, 'refreshToken'>;
+		export type Result = Promise<void>;
 	}
 }
