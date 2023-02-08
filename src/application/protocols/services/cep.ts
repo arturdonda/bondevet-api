@@ -7,6 +7,6 @@ export interface ICepService {
 export namespace ICepService {
 	export namespace Lookup {
 		export type Params = Pick<Address, 'cep'>;
-		export type Result = Promise<Address>;
+		export type Result = Promise<Omit<Address, 'additionalInfo' | 'number'>>;
 	}
 }

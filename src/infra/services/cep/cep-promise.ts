@@ -14,8 +14,6 @@ export class CepService implements ICepService {
 				city: result.city,
 				neighborhood: result.neighborhood,
 				street: result.street,
-				number: '',
-				additionalInfo: null,
 				cep: result.cep,
 			}))
 			.catch(error => {
