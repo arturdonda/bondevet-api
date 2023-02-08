@@ -1,10 +1,10 @@
-import { ILoginUser } from '@domain/use-cases/user';
+import { ILogin } from '@domain/use-cases/session';
 import { ICreateSession, IRefreshSession } from '@domain/use-cases/session';
 import { IDatabase } from '@application/protocols/database';
 import { IHashService } from '@application/protocols/services';
 import { InvalidPasswordError, NotFoundError } from '@application/errors';
 
-export class LoginUser implements ILoginUser {
+export class Login implements ILogin {
 	constructor(
 		private readonly userRepository: IDatabase.Repositories.User,
 		private readonly hashService: IHashService,
@@ -12,10 +12,11 @@ export class LoginUser implements ILoginUser {
 		private readonly refreshSession: IRefreshSession
 	) {}
 
-	async exec({ email, password, browser, deviceType, ipAddress }: ILoginUser.Params): ILoginUser.Result {
+	async exec({ email, password, browser, deviceType, ipAddress }: ILogin.Params): ILogin.Result {
 		const user = await this.userRepository.getOne({ email });
 
 		if (!user) throw new NotFoundError('User');
+
 		if (!this.hashService.verify({ text: password, hash: user.password })) throw new InvalidPasswordError();
 
 		const { refreshToken } = await this.createSession.exec({ userId: user.id, browser, deviceType, ipAddress });

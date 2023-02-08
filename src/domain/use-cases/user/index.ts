@@ -4,6 +4,5 @@ export * from './delete';
 export * from './get-all';
 export * from './get-by-id';
 export * from './invite';
-export * from './login';
 export * from './reset-password';
 export * from './update';
