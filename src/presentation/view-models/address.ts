@@ -1,5 +1,5 @@
 import { Address } from '@domain/entities';
-import { WithPartial } from '@application/utility-types';
+import { WithPartial } from '@domain/utility-types';
 
 export class AddressViewModel {
 	private readonly state: string;
