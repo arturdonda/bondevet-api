@@ -14,7 +14,7 @@ export namespace ISessionRepository {
 		export type Result = Promise<Page<Session>>;
 	}
 	export namespace GetOne {
-		export type Params = Pick<Session, 'refreshToken'>;
+		export type Params = Pick<Session, 'refreshToken' | 'userId'>;
 		export type Result = Promise<Session | null>;
 	}
 	export namespace Create {

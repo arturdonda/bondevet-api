@@ -5,6 +5,7 @@ export interface IRefreshSession {
 }
 
 export namespace IRefreshSession {
-	export type Params = Pick<Session, 'refreshToken'> & Pick<SessionMetadata, 'browser' | 'deviceType' | 'ipAddress'>;
+	export type Params = Pick<Session, 'refreshToken' | 'userId'> &
+		Pick<SessionMetadata, 'browser' | 'deviceType' | 'ipAddress'>;
 	export type Result = Promise<{ accessToken: string }>;
 }
