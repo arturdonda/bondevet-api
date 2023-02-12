@@ -21,7 +21,13 @@ export class Login implements ILogin {
 
 		const { refreshToken } = await this.createSession.exec({ userId: user.id, browser, deviceType, ipAddress });
 
-		const { accessToken } = await this.refreshSession.exec({ refreshToken, browser, deviceType, ipAddress });
+		const { accessToken } = await this.refreshSession.exec({
+			refreshToken,
+			browser,
+			deviceType,
+			ipAddress,
+			userId: user.id,
+		});
 
 		return { user, refreshToken, accessToken };
 	}
