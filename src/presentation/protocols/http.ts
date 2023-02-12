@@ -7,6 +7,7 @@ export type HttpRequest = {
 	headers: Record<string, string>;
 	cookies: Record<string, string>;
 	body: any;
+	userId: string;
 };
 
 export type HttpResponse<T = any> = {
