@@ -2,6 +2,7 @@ import { User } from '@domain/entities';
 import { ICreateUser } from '@domain/use-cases/user';
 import { IDatabase } from '@application/protocols/database';
 import { IUuidService } from '@application/protocols/services';
+import { UserRegisteredError } from '@application/errors';
 
 export class CreateUser implements ICreateUser {
 	constructor(
@@ -9,7 +10,12 @@ export class CreateUser implements ICreateUser {
 		private readonly uuidService: IUuidService
 	) {}
 
-	exec(params: ICreateUser.Params): ICreateUser.Result {
+	async exec(params: ICreateUser.Params): ICreateUser.Result {
+		if (await this.userRepository.getOne({ cpf: params.cpf })) throw new UserRegisteredError('CPF');
+		if (await this.userRepository.getOne({ rg: params.rg })) throw new UserRegisteredError('RG');
+		if (await this.userRepository.getOne({ phone: params.phone })) throw new UserRegisteredError('Phone');
+		if (await this.userRepository.getOne({ email: params.email })) throw new UserRegisteredError('Email');
+
 		const user = new User({
 			id: this.uuidService.generate(),
 			firstName: params.firstName,

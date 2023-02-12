@@ -1,5 +1,4 @@
 import { Address, Page, PageParams, User } from '@domain/entities';
-import { Choose } from '@application/protocols/utility-types';
 
 export interface IUserRepository {
 	getAll: (params: IUserRepository.GetAll.Params) => IUserRepository.GetAll.Result;
@@ -21,7 +20,7 @@ export namespace IUserRepository {
 		export type Result = Promise<Page<User>>;
 	}
 	export namespace GetOne {
-		export type Params = Choose<User, 'id', 'email'>;
+		export type Params = Partial<Pick<User, 'id' | 'cpf' | 'rg' | 'phone' | 'email'>>;
 		export type Result = Promise<User | null>;
 	}
 	export namespace Create {
