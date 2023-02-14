@@ -1,4 +1,4 @@
-import { Address } from '@domain/entities';
+import { Address, Page } from '@domain/entities';
 import { WithPartial } from '@domain/utility-types';
 
 export class AddressViewModel {
@@ -10,7 +10,7 @@ export class AddressViewModel {
 	private readonly additionalInfo: string | undefined;
 	private readonly cep: string;
 
-	constructor(params: Params) {
+	constructor(params: PartialAddress) {
 		this.state = params.state;
 		this.city = params.city;
 		this.neighborhood = params.neighborhood;
@@ -20,13 +20,13 @@ export class AddressViewModel {
 		this.cep = params.cep;
 	}
 
-	static map(address: Params): AddressViewModel {
+	static map(address: PartialAddress): AddressViewModel {
 		return new AddressViewModel(address);
 	}
 
-	static mapCollection(addresses: Params[]): AddressViewModel[] {
-		return addresses.map(address => new AddressViewModel(address));
+	static mapPage(addressPage: Page<PartialAddress>): Page<AddressViewModel> {
+		return { ...addressPage, data: addressPage.data.map(AddressViewModel.map) };
 	}
 }
 
-type Params = WithPartial<Address, 'additionalInfo' | 'number'>;
+type PartialAddress = WithPartial<Address, 'additionalInfo' | 'number'>;
