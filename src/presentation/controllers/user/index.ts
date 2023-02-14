@@ -1,3 +1,4 @@
+export * from './change-password-with-token';
 export * from './change-password';
 export * from './create';
 export * from './delete';

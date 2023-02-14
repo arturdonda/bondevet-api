@@ -5,7 +5,11 @@ export interface ITokenService {
 
 export namespace ITokenService {
 	export namespace Encode {
-		export type Params = { payload: Record<string, any>; type?: 'ACCESS_TOKEN' | 'OTHER' };
+		export type Params = {
+			payload: Record<string, any>;
+			type?: 'ACCESS_TOKEN' | 'OTHER';
+			expiresIn?: `${number}${ExpiresInPeriod}`;
+		};
 		export type Result = string;
 	}
 	export namespace Decode {
@@ -13,3 +17,5 @@ export namespace ITokenService {
 		export type Result = Record<string, any>;
 	}
 }
+
+type ExpiresInPeriod = 's' | 'm' | 'h' | 'd' | 'y';

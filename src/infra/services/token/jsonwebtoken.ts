@@ -6,12 +6,13 @@ export class TokenService implements ITokenService {
 	private readonly AUDIENCE = '';
 	private readonly ISSUER = '';
 
-	encode({ payload, type = 'ACCESS_TOKEN' }: ITokenService.Encode.Params): ITokenService.Encode.Result {
+	encode({ payload, type = 'ACCESS_TOKEN', expiresIn }: ITokenService.Encode.Params): ITokenService.Encode.Result {
 		const SECRET = type === 'ACCESS_TOKEN' ? process.env.ACCESS_TOKEN_SECRET : process.env.OTHER_TOKENS_SECRET;
 
 		return jwt.sign(payload, SECRET, {
 			audience: this.AUDIENCE,
 			issuer: this.ISSUER,
+			expiresIn,
 		});
 	}
 
