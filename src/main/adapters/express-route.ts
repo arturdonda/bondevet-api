@@ -18,6 +18,7 @@ const makeHttpRequest = (req: Request): HttpRequest => {
 		headers: req.headers as Record<string, string>,
 		cookies: req.cookies,
 		body: req.body,
+		userId: req.userId,
 	};
 
 	return request;
