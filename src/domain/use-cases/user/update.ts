@@ -5,6 +5,6 @@ export interface IUpdateUser {
 }
 
 export namespace IUpdateUser {
-	export type Params = Pick<User, 'id' | 'address' | 'email' | 'phone'>;
+	export type Params = Pick<User, 'id'> & Partial<Pick<User, 'address' | 'email' | 'phone'>>;
 	export type Result = Promise<User>;
 }

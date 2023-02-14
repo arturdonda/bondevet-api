@@ -10,9 +10,7 @@ export class GetAllSessionsController implements IController {
 		try {
 			const sessionPage = await this.service.exec({
 				userId: request.userId,
-				pageNumber: isNaN(Number.parseInt(request.query.pageNumber))
-					? undefined
-					: Number.parseInt(request.query.pageNumber),
+				pageNumber: isNaN(Number.parseInt(request.query.pageNumber)) ? undefined : Number.parseInt(request.query.pageNumber),
 				pageSize: isNaN(Number.parseInt(request.query.pageSize)) ? undefined : Number.parseInt(request.query.pageSize),
 				sortBy: request.query.sortBy as any,
 				sortDirection: request.query.sortDirection as any,
