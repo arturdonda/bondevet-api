@@ -1,6 +1,6 @@
 import { IUpdateUser } from '@domain/use-cases/user';
 import { IDatabase } from '@application/protocols/database';
-import { NotFoundError } from '@application/errors';
+import { NotFoundError, UserRegisteredError } from '@application/errors';
 
 export class UpdateUser implements IUpdateUser {
 	constructor(private readonly userRepository: IDatabase.Repositories.User) {}
@@ -10,9 +10,21 @@ export class UpdateUser implements IUpdateUser {
 
 		if (!user) throw new NotFoundError('User');
 
-		if (email) user.email = email;
-		if (address) user.address = address;
-		if (phone) user.phone = phone;
+		if (email) {
+			if (await this.userRepository.getOne({ email })) throw new UserRegisteredError('email');
+
+			user.email = email;
+		}
+
+		if (phone) {
+			if (await this.userRepository.getOne({ phone })) throw new UserRegisteredError('phone');
+
+			user.phone = phone;
+		}
+
+		if (address) {
+			user.address = address;
+		}
 
 		return this.userRepository.update(user);
 	}
