@@ -5,5 +5,5 @@ export * from './delete';
 export * from './get-all';
 export * from './get-by-id';
 export * from './invite';
-export * from './reset-password';
+export * from './request-password-change';
 export * from './update';
