@@ -1,5 +1,6 @@
 import { ITokenService } from '@application/protocols/services';
-import { ExpiredTokenError, InvalidTokenError } from '@infra/errors';
+import { InvalidTokenError } from '@application/errors';
+import { ExpiredTokenError } from '@infra/errors';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export class TokenService implements ITokenService {

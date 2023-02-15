@@ -5,6 +5,6 @@ export interface ICreateUser {
 }
 
 export namespace ICreateUser {
-	export type Params = Omit<UserParams, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'>;
+	export type Params = Omit<UserParams, 'id' | 'createdAt' | 'updatedAt' | 'deletedAt'> & { inviteToken: string };
 	export type Result = Promise<User>;
 }

@@ -17,6 +17,7 @@ export class CreateUserController implements IController {
 			if (!request.body.password) throw new MissingParamError('password');
 			if (!request.body.birthday) throw new MissingParamError('birthday');
 			if (!request.body.address) throw new MissingParamError('address');
+			if (!request.body.inviteToken) throw new MissingParamError('inviteToken');
 
 			const user = await this.service.exec({
 				firstName: request.body.firstName,
@@ -28,6 +29,7 @@ export class CreateUserController implements IController {
 				password: request.body.password,
 				birthday: request.body.birthday,
 				address: request.body.address,
+				inviteToken: request.body.inviteToken,
 			});
 
 			return created({ message: 'User created successfully', result: UserViewModel.map(user) });

@@ -35,7 +35,7 @@ const uuidService = new UuidService();
 // Usecases
 const changeUserPassword = new ChangeUserPassword(userRepository, hashService);
 const changeUserPasswordWithToken = new ChangeUserPasswordWithToken(userRepository, hashService, tokenService);
-const createUser = new CreateUser(userRepository, uuidService);
+const createUser = new CreateUser(userRepository, uuidService, tokenService);
 const deleteUser = new DeleteUser(userRepository);
 const getAllUsers = new GetAllUsers(userRepository);
 const getUserById = new GetUserById(userRepository);
