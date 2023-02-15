@@ -1,5 +1,5 @@
 import { unauthorized } from '@presentation/helpers';
-import { validateSession } from '@main/factories/session';
+import { validateSession } from '@main/factories/auth';
 import { Request, Response, NextFunction } from 'express';
 
 export const authorize = async (req: Request, res: Response, next: NextFunction) => {

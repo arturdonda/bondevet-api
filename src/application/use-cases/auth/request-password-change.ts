@@ -1,4 +1,4 @@
-import { IRequestPasswordChange } from '@domain/use-cases/user';
+import { IRequestPasswordChange } from '@domain/use-cases/auth';
 import { IDatabase } from '@application/protocols/database';
 import { IEmailService, ITokenService } from '@application/protocols/services';
 

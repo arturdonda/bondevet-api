@@ -1,7 +1,7 @@
+import { IChangeUserPassword } from '@domain/use-cases/user';
 import { NotFoundError } from '@application/errors';
 import { IDatabase } from '@application/protocols/database';
 import { IHashService } from '@application/protocols/services';
-import { IChangeUserPassword } from '@domain/use-cases/user';
 
 export class ChangeUserPassword implements IChangeUserPassword {
 	constructor(

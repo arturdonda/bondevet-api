@@ -1,4 +1,4 @@
-import { IChangeUserPasswordWithToken } from '@domain/use-cases/user';
+import { IChangeUserPasswordWithToken } from '@domain/use-cases/auth';
 import { NotFoundError } from '@application/errors';
 import { IDatabase } from '@application/protocols/database';
 import { IHashService, ITokenService } from '@application/protocols/services';

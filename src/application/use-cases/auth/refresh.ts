@@ -1,7 +1,7 @@
+import { IRefreshSession } from '@domain/use-cases/auth';
 import { NotFoundError } from '@application/errors';
 import { IDatabase } from '@application/protocols/database';
 import { ITokenService, IIpService } from '@application/protocols/services';
-import { IRefreshSession } from '@domain/use-cases/session';
 
 export class RefreshSession implements IRefreshSession {
 	constructor(

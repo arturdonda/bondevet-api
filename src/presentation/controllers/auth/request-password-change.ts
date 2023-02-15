@@ -1,4 +1,4 @@
-import { IRequestPasswordChange } from '@domain/use-cases/user';
+import { IRequestPasswordChange } from '@domain/use-cases/auth';
 import { MissingParamError } from '@presentation/errors';
 import { errorHandler, ok } from '@presentation/helpers';
 import { HttpRequest, HttpResponse, IController } from '@presentation/protocols';

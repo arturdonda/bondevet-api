@@ -1,7 +1,11 @@
 import { adaptRoute } from '@main/adapters';
-import { loginController, refreshSessionController } from '@main/factories/session';
-import { changeUserPasswordWithTokenController, requestPasswordChangeController } from '@main/factories/user';
 import { authorize } from '@main/middlewares/authorize';
+import {
+	changeUserPasswordWithTokenController,
+	loginController,
+	refreshSessionController,
+	requestPasswordChangeController,
+} from '@main/factories/auth';
 import { Router } from 'express';
 
 export default (router: Router): void => {

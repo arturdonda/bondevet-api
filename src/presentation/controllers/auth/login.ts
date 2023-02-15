@@ -1,4 +1,4 @@
-import { ILogin } from '@domain/use-cases/session';
+import { ILogin } from '@domain/use-cases/auth';
 import { MissingParamError } from '@presentation/errors';
 import { ok, unauthorized } from '@presentation/helpers';
 import { HttpRequest, HttpResponse, IController } from '@presentation/protocols';

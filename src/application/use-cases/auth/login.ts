@@ -1,5 +1,5 @@
-import { ILogin } from '@domain/use-cases/session';
-import { ICreateSession, IRefreshSession } from '@domain/use-cases/session';
+import { ILogin, IRefreshSession } from '@domain/use-cases/auth';
+import { ICreateSession } from '@domain/use-cases/session';
 import { IDatabase } from '@application/protocols/database';
 import { IHashService } from '@application/protocols/services';
 import { InvalidPasswordError, NotFoundError } from '@application/errors';

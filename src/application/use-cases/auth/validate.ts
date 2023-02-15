@@ -1,6 +1,6 @@
+import { IValidateSession } from '@domain/use-cases/auth';
 import { NotFoundError } from '@application/errors';
 import { IDatabase } from '@application/protocols/database';
-import { IValidateSession } from '@domain/use-cases/session';
 
 export class ValidateSession implements IValidateSession {
 	constructor(private readonly sessionRepository: IDatabase.Repositories.Session) {}
