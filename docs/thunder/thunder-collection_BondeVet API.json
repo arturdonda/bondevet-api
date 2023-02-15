@@ -1,0 +1,434 @@
+{
+	"client": "Thunder Client",
+	"collectionName": "BondeVet API",
+	"dateExported": "2023-02-15T03:43:55.744Z",
+	"version": "1.1",
+	"folders": [
+		{
+			"_id": "33fe6f2f-6627-431f-9028-0db301d4115b",
+			"name": "Address",
+			"containerId": "",
+			"created": "2023-02-14T22:51:29.845Z",
+			"sortNum": 10000
+		},
+		{
+			"_id": "730d33fd-e6a0-4f25-96e0-59b8c16f5cf5",
+			"name": "Auth",
+			"containerId": "",
+			"created": "2023-02-15T02:59:04.526Z",
+			"sortNum": 30000
+		},
+		{
+			"_id": "ba8a78ab-eee0-424e-9298-6312d2edac4c",
+			"name": "Session",
+			"containerId": "",
+			"created": "2023-02-15T03:01:07.004Z",
+			"sortNum": 40000
+		},
+		{
+			"_id": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "User",
+			"containerId": "",
+			"created": "2023-02-15T03:03:20.701Z",
+			"sortNum": 50000
+		}
+	],
+	"requests": [
+		{
+			"_id": "43435025-4502-4fe7-9da8-2fb8d9413873",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "",
+			"name": "Healthcheck",
+			"url": "{{base_url}}",
+			"method": "GET",
+			"sortNum": 10000,
+			"created": "2023-01-25T01:20:05.896Z",
+			"modified": "2023-01-25T01:24:29.429Z",
+			"headers": [],
+			"params": [
+				{
+					"name": "base_url_local",
+					"value": "localhost:3000",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "base_url_dev",
+					"value": "https://api.bondevet.com.br",
+					"isDisabled": true,
+					"isPath": false
+				}
+			],
+			"tests": []
+		},
+		{
+			"_id": "a00f605b-c082-48df-8b37-c3d0a9705aac",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "33fe6f2f-6627-431f-9028-0db301d4115b",
+			"name": "Get Address from CEP",
+			"url": "{{base_url}}/address?cep=38408261",
+			"method": "GET",
+			"sortNum": 20000,
+			"created": "2023-02-14T22:51:39.203Z",
+			"modified": "2023-02-14T22:53:40.088Z",
+			"headers": [],
+			"params": [
+				{
+					"name": "cep",
+					"value": "38408261",
+					"isPath": false
+				}
+			],
+			"tests": []
+		},
+		{
+			"_id": "6c914d0a-1c2e-48d2-94f2-fd69bc8be7db",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "730d33fd-e6a0-4f25-96e0-59b8c16f5cf5",
+			"name": "Login",
+			"url": "{{base_url}}/auth/login",
+			"method": "POST",
+			"sortNum": 30000,
+			"created": "2023-02-15T02:59:13.913Z",
+			"modified": "2023-02-15T03:40:33.540Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"password\": \"John#123\",\n  \"browser\": \"chrome\",\n  \"deviceType\": \"laptop\"\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "f86920c9-9d2f-4085-8875-6d717db94479",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "730d33fd-e6a0-4f25-96e0-59b8c16f5cf5",
+			"name": "Refresh Session",
+			"url": "{{base_url}}/auth/refresh",
+			"method": "POST",
+			"sortNum": 40000,
+			"created": "2023-02-15T02:59:37.897Z",
+			"modified": "2023-02-15T03:40:44.778Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n  \"browser\": \"chrome\",\n  \"deviceType\": \"laptop\"\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "9d658d06-7ac9-410d-8eb3-760f899e817b",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "ba8a78ab-eee0-424e-9298-6312d2edac4c",
+			"name": "Get all Sessions",
+			"url": "{{base_url}}/sessions",
+			"method": "GET",
+			"sortNum": 40000,
+			"created": "2023-02-15T03:01:18.647Z",
+			"modified": "2023-02-15T03:16:16.933Z",
+			"headers": [],
+			"params": [
+				{
+					"name": "pageNumber",
+					"value": "1",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "pageSize",
+					"value": "50",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "sortBy",
+					"value": "userId",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "sortDirection",
+					"value": "ASC",
+					"isDisabled": true,
+					"isPath": false
+				}
+			],
+			"tests": []
+		},
+		{
+			"_id": "61882382-4843-41f6-bfa5-45c903700a35",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "730d33fd-e6a0-4f25-96e0-59b8c16f5cf5",
+			"name": "Forgot Password",
+			"url": "{{base_url}}/auth/forgot-password",
+			"method": "POST",
+			"sortNum": 50000,
+			"created": "2023-02-15T02:59:58.242Z",
+			"modified": "2023-02-15T03:40:51.913Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n  \"email\": \"john_doe@example.com\"\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "d1a017f8-0ac5-4b25-a305-cf6aa1baf12a",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "ba8a78ab-eee0-424e-9298-6312d2edac4c",
+			"name": "Delete Session",
+			"url": "{{base_url}}/sessions/{refreshToken}",
+			"method": "DELETE",
+			"sortNum": 50000,
+			"created": "2023-02-15T03:01:45.821Z",
+			"modified": "2023-02-15T03:39:57.684Z",
+			"headers": [],
+			"params": [
+				{
+					"name": "refreshToken",
+					"value": "abc123",
+					"isPath": true
+				}
+			],
+			"tests": []
+		},
+		{
+			"_id": "a69ffcea-e720-496e-a0cb-c2c98247bc8b",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "Get all Users",
+			"url": "{{base_url}}/users",
+			"method": "GET",
+			"sortNum": 50000,
+			"created": "2023-02-15T03:03:31.602Z",
+			"modified": "2023-02-15T03:34:53.117Z",
+			"headers": [],
+			"params": [
+				{
+					"name": "name",
+					"value": "John Doe",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "email",
+					"value": "john_doe@example.com",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "birthdayFrom",
+					"value": "1990-01-01",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "birthdayTo",
+					"value": "1990-01-31",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "phone",
+					"value": "34 99999-9999",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "cpf",
+					"value": "123.456.789-00",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "rg",
+					"value": "12.345.678-9",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "city",
+					"value": "Uberlandia",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "neighborhood",
+					"value": "Centro",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "state",
+					"value": "MG",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "pageSize",
+					"value": "1",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "pageNumber",
+					"value": "50",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "sortBy",
+					"value": "name",
+					"isDisabled": true,
+					"isPath": false
+				},
+				{
+					"name": "sortDirection",
+					"value": "ASC",
+					"isDisabled": true,
+					"isPath": false
+				}
+			],
+			"tests": []
+		},
+		{
+			"_id": "cc5eaedd-03a5-4a4f-97ac-9f8448a2108d",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "730d33fd-e6a0-4f25-96e0-59b8c16f5cf5",
+			"name": "Reset Password",
+			"url": "{{base_url}}/auth/reset-password",
+			"method": "POST",
+			"sortNum": 60000,
+			"created": "2023-02-15T03:00:26.340Z",
+			"modified": "2023-02-15T03:41:01.943Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n  \"resetToken\": \"abc123\",\n  \"password\": \"John#123\"\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "4de7941c-ee08-4d5c-b850-c8aef2ed3bf1",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "Get User by id",
+			"url": "{{base_url}}/users/{id}",
+			"method": "GET",
+			"sortNum": 60000,
+			"created": "2023-02-15T03:03:54.898Z",
+			"modified": "2023-02-15T03:34:18.557Z",
+			"headers": [],
+			"params": [
+				{
+					"name": "id",
+					"value": "1",
+					"isPath": true
+				}
+			],
+			"tests": []
+		},
+		{
+			"_id": "9a2cb094-d3c5-485c-b1bc-0fa68b507462",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "Create User",
+			"url": "{{base_url}}/users",
+			"method": "POST",
+			"sortNum": 70000,
+			"created": "2023-02-15T03:04:22.236Z",
+			"modified": "2023-02-15T03:38:53.285Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n\"firstName\": \"John\",\n\"lastName\": \"Doe\",\n\"cpf\": \"123.456.789-00\",\n\"rg\": \"12.345.678-9\",\n\"phone\": \"34 99999-9999\",\n\"email\": \"john_doe@example.com\",\n\"password\": \"John#123\",\n\"birthday\": \"1990-05-31\",\n\"address\": {\n  \"state\": \"MG\",\n\t\"city\": \"Uberlandia\",\n\t\"neighborhood\": \"Centro\",\n\t\"street\": \"Not Found St.\",\n\t\"number\": \"404\",\n\t\"additionalInfo\": \"\",\n\t\"cep\": \"38.408-000\"\n},\n\"inviteToken\": \"abc123\"\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "4ffef6c3-c611-4993-a10f-97fbad72ec55",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "Delete User",
+			"url": "{{base_url}}/users",
+			"method": "DELETE",
+			"sortNum": 80000,
+			"created": "2023-02-15T03:04:45.795Z",
+			"modified": "2023-02-15T03:05:03.410Z",
+			"headers": [],
+			"params": [],
+			"tests": []
+		},
+		{
+			"_id": "b1cb2cca-ecde-447f-8e22-bd8dbac55514",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "Invite User",
+			"url": "{{base_url}}/users/invite",
+			"method": "POST",
+			"sortNum": 90000,
+			"created": "2023-02-15T03:05:22.507Z",
+			"modified": "2023-02-15T03:37:42.107Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\"\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "7ef9c37a-e4f1-43d9-9033-191e317a5253",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "Update User",
+			"url": "{{base_url}}/users",
+			"method": "PATCH",
+			"sortNum": 100000,
+			"created": "2023-02-15T03:05:44.785Z",
+			"modified": "2023-02-15T03:38:31.953Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"phone\": \"34 99999-9999\",\n  \"address\": {\n    \"state\": \"MG\",\n\t  \"city\": \"Uberlandia\",\n\t  \"neighborhood\": \"Centro\",\n\t  \"street\": \"Not Found St.\",\n\t  \"number\": \"404\",\n\t  \"additionalInfo\": \"\",\n\t  \"cep\": \"38.408-000\"\n  }\n}",
+				"form": []
+			},
+			"tests": []
+		},
+		{
+			"_id": "a3ad3054-eb01-4db8-a38b-5a218a3ab1d7",
+			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
+			"containerId": "2886ab20-29b1-4f0e-83ca-838cc9b73874",
+			"name": "Change Password",
+			"url": "{{base_url}}/users/password",
+			"method": "PATCH",
+			"sortNum": 110000,
+			"created": "2023-02-15T03:06:16.664Z",
+			"modified": "2023-02-15T03:38:44.935Z",
+			"headers": [],
+			"params": [],
+			"body": {
+				"type": "json",
+				"raw": "{\n  \"password\": \"John#123\"\n}",
+				"form": []
+			},
+			"tests": []
+		}
+	],
+	"settings": {
+		"headers": [],
+		"tests": [],
+		"envId": "3078a09f-ea31-4e61-8ad1-488ca1363313"
+	}
+}

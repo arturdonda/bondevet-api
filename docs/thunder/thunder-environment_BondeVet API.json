@@ -1,0 +1,12 @@
+{
+	"client": "Thunder Client",
+	"environmentName": "BondeVet API",
+	"dateExported": "2023-02-15T03:44:04.136Z",
+	"version": "1.0",
+	"variables": [
+		{
+			"name": "base_url",
+			"value": "localhost:3000"
+		}
+	]
+}

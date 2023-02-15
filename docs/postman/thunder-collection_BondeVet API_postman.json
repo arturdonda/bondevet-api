@@ -1,0 +1,395 @@
+{
+	"info": {
+		"name": "BondeVet API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"description": ""
+	},
+	"item": [
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "Get Address from CEP",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/address?cep=38408261",
+							"query": [
+								{
+									"key": "cep",
+									"value": "38408261"
+								}
+							],
+							"variable": [],
+							"path": ["address"],
+							"host": ["{{base_url}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"path": ["auth", "login"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"password\": \"John#123\",\n  \"browser\": \"chrome\",\n  \"deviceType\": \"laptop\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Refresh Session",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/auth/refresh",
+							"path": ["auth", "refresh"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n  \"browser\": \"chrome\",\n  \"deviceType\": \"laptop\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/auth/forgot-password",
+							"path": ["auth", "forgot-password"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n  \"email\": \"john_doe@example.com\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/auth/reset-password",
+							"path": ["auth", "reset-password"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n  \"resetToken\": \"abc123\",\n  \"password\": \"John#123\"\n}"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Session",
+			"item": [
+				{
+					"name": "Get all Sessions",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/sessions",
+							"query": [
+								{
+									"key": "pageNumber",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "50",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "userId",
+									"disabled": true
+								},
+								{
+									"key": "sortDirection",
+									"value": "ASC",
+									"disabled": true
+								}
+							],
+							"variable": [],
+							"path": ["sessions"],
+							"host": ["{{base_url}}"]
+						}
+					}
+				},
+				{
+					"name": "Delete Session",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/sessions/:refreshToken",
+							"query": [],
+							"variable": [
+								{
+									"key": "refreshToken",
+									"value": "abc123"
+								}
+							],
+							"path": ["sessions", ":refreshToken"],
+							"host": ["{{base_url}}"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get all Users",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/users",
+							"query": [
+								{
+									"key": "name",
+									"value": "John Doe",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "john_doe@example.com",
+									"disabled": true
+								},
+								{
+									"key": "birthdayFrom",
+									"value": "1990-01-01",
+									"disabled": true
+								},
+								{
+									"key": "birthdayTo",
+									"value": "1990-01-31",
+									"disabled": true
+								},
+								{
+									"key": "phone",
+									"value": "34 99999-9999",
+									"disabled": true
+								},
+								{
+									"key": "cpf",
+									"value": "123.456.789-00",
+									"disabled": true
+								},
+								{
+									"key": "rg",
+									"value": "12.345.678-9",
+									"disabled": true
+								},
+								{
+									"key": "city",
+									"value": "Uberlandia",
+									"disabled": true
+								},
+								{
+									"key": "neighborhood",
+									"value": "Centro",
+									"disabled": true
+								},
+								{
+									"key": "state",
+									"value": "MG",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "pageNumber",
+									"value": "50",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "sortDirection",
+									"value": "ASC",
+									"disabled": true
+								}
+							],
+							"variable": [],
+							"path": ["users"],
+							"host": ["{{base_url}}"]
+						}
+					}
+				},
+				{
+					"name": "Get User by id",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/users/:id",
+							"query": [],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							],
+							"path": ["users", ":id"],
+							"host": ["{{base_url}}"]
+						}
+					}
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/users",
+							"path": ["users"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n\"firstName\": \"John\",\n\"lastName\": \"Doe\",\n\"cpf\": \"123.456.789-00\",\n\"rg\": \"12.345.678-9\",\n\"phone\": \"34 99999-9999\",\n\"email\": \"john_doe@example.com\",\n\"password\": \"John#123\",\n\"birthday\": \"1990-05-31\",\n\"address\": {\n  \"state\": \"MG\",\n\t\"city\": \"Uberlandia\",\n\t\"neighborhood\": \"Centro\",\n\t\"street\": \"Not Found St.\",\n\t\"number\": \"404\",\n\t\"additionalInfo\": \"\",\n\t\"cep\": \"38.408-000\"\n},\n\"inviteToken\": \"abc123\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/users",
+							"path": ["users"],
+							"host": ["{{base_url}}"]
+						}
+					}
+				},
+				{
+					"name": "Invite User",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/users/invite",
+							"path": ["users", "invite"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/users",
+							"path": ["users"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"phone\": \"34 99999-9999\",\n  \"address\": {\n    \"state\": \"MG\",\n\t  \"city\": \"Uberlandia\",\n\t  \"neighborhood\": \"Centro\",\n\t  \"street\": \"Not Found St.\",\n\t  \"number\": \"404\",\n\t  \"additionalInfo\": \"\",\n\t  \"cep\": \"38.408-000\"\n  }\n}"
+						}
+					}
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/users/password",
+							"path": ["users", "password"],
+							"host": ["{{base_url}}"]
+						},
+						"body": {
+							"mode": "raw",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							},
+							"raw": "{\n  \"password\": \"John#123\"\n}"
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Healthcheck",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "{{base_url}}",
+					"query": [
+						{
+							"key": "base_url_local",
+							"value": "localhost:3000",
+							"disabled": true
+						},
+						{
+							"key": "base_url_dev",
+							"value": "https://api.bondevet.com.br",
+							"disabled": true
+						}
+					],
+					"variable": [],
+					"host": ["{{base_url}}"]
+				}
+			}
+		}
+	]
+}
