@@ -65,6 +65,10 @@ export class SessionRepository implements ISessionRepository {
 		return this.sessions.destroy({ where: refreshToken }).then(() => {});
 	}
 
+	deleteAll(userId: ISessionRepository.DeleteAll.Params): ISessionRepository.DeleteAll.Result {
+		return this.sessions.destroy({ where: userId }).then(() => {});
+	}
+
 	private makeGetAllFilters = (params: ISessionRepository.GetAll.Params): WhereOptions | undefined => {
 		return { userId: params.userId };
 	};

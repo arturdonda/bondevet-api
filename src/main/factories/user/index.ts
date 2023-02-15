@@ -25,6 +25,7 @@ import {
 
 // Repositories
 const userRepository = database.repositories.User;
+const sessionRepository = database.repositories.Session;
 
 // Services
 const emailService = new EmailService();
@@ -36,7 +37,7 @@ const uuidService = new UuidService();
 const changeUserPassword = new ChangeUserPassword(userRepository, hashService);
 const changeUserPasswordWithToken = new ChangeUserPasswordWithToken(userRepository, hashService, tokenService);
 const createUser = new CreateUser(userRepository, uuidService, tokenService);
-const deleteUser = new DeleteUser(userRepository);
+const deleteUser = new DeleteUser(userRepository, sessionRepository);
 const getAllUsers = new GetAllUsers(userRepository);
 const getUserById = new GetUserById(userRepository);
 const inviteUser = new InviteUser(userRepository, tokenService, emailService);

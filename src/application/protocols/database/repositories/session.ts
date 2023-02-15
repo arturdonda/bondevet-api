@@ -7,6 +7,7 @@ export interface ISessionRepository {
 	create: (params: ISessionRepository.Create.Params) => ISessionRepository.Create.Result;
 	update: (params: ISessionRepository.Update.Params) => ISessionRepository.Update.Result;
 	delete: (params: ISessionRepository.Delete.Params) => ISessionRepository.Delete.Result;
+	deleteAll: (params: ISessionRepository.DeleteAll.Params) => ISessionRepository.DeleteAll.Result;
 }
 
 export namespace ISessionRepository {
@@ -32,6 +33,10 @@ export namespace ISessionRepository {
 	}
 	export namespace Delete {
 		export type Params = Pick<Session, 'refreshToken'>;
+		export type Result = Promise<void>;
+	}
+	export namespace DeleteAll {
+		export type Params = Pick<Session, 'userId'>;
 		export type Result = Promise<void>;
 	}
 }

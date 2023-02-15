@@ -3,7 +3,10 @@ import { IDatabase } from '@application/protocols/database';
 import { NotFoundError } from '@application/errors';
 
 export class DeleteUser implements IDeleteUser {
-	constructor(private readonly userRepository: IDatabase.Repositories.User) {}
+	constructor(
+		private readonly userRepository: IDatabase.Repositories.User,
+		private readonly sessionRepository: IDatabase.Repositories.Session
+	) {}
 
 	async exec({ id }: IDeleteUser.Params): IDeleteUser.Result {
 		const user = await this.userRepository.getOne({ id });
@@ -12,6 +15,8 @@ export class DeleteUser implements IDeleteUser {
 
 		user.setDeleted();
 
-		return this.userRepository.update(user).then(user => {});
+		await this.userRepository.update(user);
+
+		await this.sessionRepository.deleteAll({ userId: user.id });
 	}
 }
