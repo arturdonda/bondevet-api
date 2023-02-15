@@ -1,16 +1,16 @@
-import { IChangeUserPasswordWithToken } from '@domain/use-cases/auth';
+import { IResetPassword } from '@domain/use-cases/auth';
 import { NotFoundError } from '@application/errors';
 import { IDatabase } from '@application/protocols/database';
 import { IHashService, ITokenService } from '@application/protocols/services';
 
-export class ChangeUserPasswordWithToken implements IChangeUserPasswordWithToken {
+export class ResetPassword implements IResetPassword {
 	constructor(
 		private readonly userRepository: IDatabase.Repositories.User,
 		private readonly hashService: IHashService,
 		private readonly tokenService: ITokenService
 	) {}
 
-	async exec({ resetToken, password }: IChangeUserPasswordWithToken.Params): IChangeUserPasswordWithToken.Result {
+	async exec({ resetToken, password }: IResetPassword.Params): IResetPassword.Result {
 		const { id } = this.tokenService.decode({ token: resetToken, type: 'OTHER' }) as ResetToken;
 
 		const user = await this.userRepository.getOne({ id });

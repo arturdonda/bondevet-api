@@ -1,10 +1,10 @@
-import { IRequestPasswordChange } from '@domain/use-cases/auth';
+import { IForgotPassword } from '@domain/use-cases/auth';
 import { MissingParamError } from '@presentation/errors';
 import { errorHandler, ok } from '@presentation/helpers';
 import { HttpRequest, HttpResponse, IController } from '@presentation/protocols';
 
-export class RequestPasswordChangeController implements IController {
-	constructor(private readonly service: IRequestPasswordChange) {}
+export class ForgotPasswordController implements IController {
+	constructor(private readonly service: IForgotPassword) {}
 	async handle(request: HttpRequest): Promise<HttpResponse<null>> {
 		try {
 			if (!request.body.email) throw new MissingParamError('email');

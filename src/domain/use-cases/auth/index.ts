@@ -1,5 +1,5 @@
-export * from './change-password-with-token';
+export * from './forgot-password';
 export * from './login';
 export * from './refresh';
-export * from './request-password-change';
+export * from './reset-password';
 export * from './validate';

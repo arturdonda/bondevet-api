@@ -1,10 +1,10 @@
 import { adaptRoute } from '@main/adapters';
 import { authorize } from '@main/middlewares/authorize';
 import {
-	changeUserPasswordWithTokenController,
+	forgotPasswordController,
 	loginController,
 	refreshSessionController,
-	requestPasswordChangeController,
+	resetPasswordController,
 } from '@main/factories/auth';
 import { Router } from 'express';
 
@@ -15,7 +15,7 @@ export default (router: Router): void => {
 
 	router.post(`/${prefix}/refresh`, authorize, adaptRoute(refreshSessionController));
 
-	router.post(`/${prefix}/forgot-password`, adaptRoute(requestPasswordChangeController));
+	router.post(`/${prefix}/forgot-password`, adaptRoute(forgotPasswordController));
 
-	router.post(`/${prefix}/reset-password`, adaptRoute(changeUserPasswordWithTokenController));
+	router.post(`/${prefix}/reset-password`, adaptRoute(resetPasswordController));
 };

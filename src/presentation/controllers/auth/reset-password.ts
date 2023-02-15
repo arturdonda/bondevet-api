@@ -1,10 +1,10 @@
-import { IChangeUserPasswordWithToken } from '@domain/use-cases/auth';
+import { IResetPassword } from '@domain/use-cases/auth';
 import { MissingParamError } from '@presentation/errors';
 import { errorHandler, ok } from '@presentation/helpers';
 import { HttpRequest, HttpResponse, IController } from '@presentation/protocols';
 
-export class ChangeUserPasswordWithTokenController implements IController {
-	constructor(private readonly service: IChangeUserPasswordWithToken) {}
+export class ResetPasswordController implements IController {
+	constructor(private readonly service: IResetPassword) {}
 	async handle(request: HttpRequest): Promise<HttpResponse<null>> {
 		try {
 			if (!request.body.resetToken) throw new MissingParamError('resetToken');
