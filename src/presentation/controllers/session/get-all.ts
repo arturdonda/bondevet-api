@@ -9,11 +9,10 @@ export class GetAllSessionsController implements IController {
 	async handle(request: HttpRequest): Promise<HttpResponse<Page<SessionViewModel>>> {
 		try {
 			const sessionPage = await this.service.exec({
+				...request.query,
 				userId: request.userId,
 				pageNumber: isNaN(Number.parseInt(request.query.pageNumber)) ? undefined : Number.parseInt(request.query.pageNumber),
 				pageSize: isNaN(Number.parseInt(request.query.pageSize)) ? undefined : Number.parseInt(request.query.pageSize),
-				sortBy: request.query.sortBy as any,
-				sortDirection: request.query.sortDirection as any,
 			});
 
 			return ok({

@@ -11,7 +11,7 @@ export class ChangeUserPasswordWithToken implements IChangeUserPasswordWithToken
 	) {}
 
 	async exec({ resetToken, password }: IChangeUserPasswordWithToken.Params): IChangeUserPasswordWithToken.Result {
-		const { id } = this.tokenService.decode({ token: resetToken, type: 'OTHER' });
+		const { id } = this.tokenService.decode({ token: resetToken, type: 'OTHER' }) as ResetToken;
 
 		const user = await this.userRepository.getOne({ id });
 
@@ -22,3 +22,5 @@ export class ChangeUserPasswordWithToken implements IChangeUserPasswordWithToken
 		await this.userRepository.update(user);
 	}
 }
+
+type ResetToken = { id: string };
