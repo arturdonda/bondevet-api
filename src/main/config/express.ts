@@ -1,6 +1,6 @@
 require('dotenv').config();
 import '../../../module-alias';
-import { configureLogger, configureRoutes } from '@main/config';
+import { configureDb, configureLogger, configureRoutes } from '@main/config';
 import { createApiResponse } from '@main/middlewares';
 import express, { Express } from 'express';
 
@@ -18,6 +18,9 @@ export const configureApp = async (): Promise<Express> => {
 
 	// Setup api response
 	app.use(createApiResponse);
+
+	// Setup database
+	await configureDb();
 
 	return app;
 };
