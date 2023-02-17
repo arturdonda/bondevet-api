@@ -8,11 +8,11 @@ export const sessionModel: ModelAttributes = {
 		unique: true,
 		field: 'refresh_token',
 	},
-	csfr: {
+	csrf: {
 		type: DataTypes.STRING(32),
 		allowNull: false,
 		unique: true,
-		field: 'csfr',
+		field: 'csrf',
 	},
 	userId: {
 		type: DataTypes.STRING(32),

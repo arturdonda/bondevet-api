@@ -38,7 +38,7 @@ export class SessionRepository implements ISessionRepository {
 		return this.sessions
 			.create({
 				refreshToken: params.refreshToken,
-				csfr: params.csfr,
+				csrf: params.csrf,
 				userId: params.userId,
 				metadata: params.metadata,
 			})

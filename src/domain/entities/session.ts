@@ -22,7 +22,7 @@ export class Session {
 		return this._refreshToken;
 	}
 
-	get csfr(): SessionParams['csrf'] {
+	get csrf(): SessionParams['csrf'] {
 		return this._csrf;
 	}
 
