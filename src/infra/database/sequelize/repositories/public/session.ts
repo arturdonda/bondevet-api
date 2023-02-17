@@ -26,14 +26,6 @@ export class SessionRepository implements ISessionRepository {
 		return this.sessions.findOne({ where: params }).then(session => (session ? SessionDTO.single(session) : null));
 	}
 
-	getUser(refreshToken: ISessionRepository.GetUser.Params): ISessionRepository.GetUser.Result {
-		return this.sessions.findOne({ where: refreshToken, attributes: ['userId'] }).then(result => {
-			if (result === null) return null;
-
-			return result.get().userId;
-		});
-	}
-
 	create(params: ISessionRepository.Create.Params): ISessionRepository.Create.Result {
 		return this.sessions
 			.create({

@@ -1,4 +1,4 @@
-import { ForgotPassword, Login, RefreshSession, ResetPassword, ValidateSession } from '@application/use-cases/auth';
+import { ForgotPassword, Login, RefreshSession, ResetPassword } from '@application/use-cases/auth';
 import { database } from '@infra/database';
 import { EmailService, HashService, IpService, TokenService } from '@infra/services';
 import {
@@ -23,7 +23,6 @@ const hashService = new HashService();
 const forgotPassword = new ForgotPassword(userRepository, emailService, tokenService);
 const refreshSession = new RefreshSession(sessionRepository, tokenService, ipService);
 const login = new Login(userRepository, hashService, createSession, refreshSession);
-export const validateSession = new ValidateSession(sessionRepository);
 const resetPassword = new ResetPassword(userRepository, hashService, tokenService);
 
 // Controllers

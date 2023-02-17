@@ -1,5 +1,5 @@
+import { TokenService } from '@infra/services';
 import { unauthorized } from '@presentation/helpers';
-import { validateSession } from '@main/factories/auth';
 import { Request, Response, NextFunction } from 'express';
 
 export const authorize = async (req: Request, res: Response, next: NextFunction) => {
@@ -7,7 +7,9 @@ export const authorize = async (req: Request, res: Response, next: NextFunction)
 		return next(unauthorized({ message: 'Must login first.', result: null }));
 
 	try {
-		const { userId } = await validateSession.exec({ refreshToken: req.headers.authorization.split(' ')[1] });
+		const tokenService = new TokenService();
+
+		const { userId } = tokenService.decode({ token: req.headers.authorization.split(' ')[1], type: 'ACCESS_TOKEN' });
 
 		req.userId = userId;
 
