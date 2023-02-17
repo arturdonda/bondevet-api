@@ -15,6 +15,9 @@ export const authorize = async (req: Request, res: Response, next: NextFunction)
 
 		return next();
 	} catch (error) {
-		next(unauthorized({ message: error.message, result: null }));
+		console.log('error: ', error);
+		next(
+			unauthorized({ message: error.name === 'ExpiredTokenError' ? 'Token Expired' : 'Invalid Token', result: null })
+		);
 	}
 };
