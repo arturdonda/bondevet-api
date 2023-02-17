@@ -13,7 +13,7 @@ export const userModel: ModelAttributes = {
 		allowNull: false,
 		field: 'first_name',
 	},
-	last_name: {
+	lastName: {
 		type: DataTypes.STRING(50),
 		allowNull: false,
 		field: 'last_name',
@@ -51,6 +51,11 @@ export const userModel: ModelAttributes = {
 		type: DataTypes.DATEONLY,
 		allowNull: false,
 		field: 'birthday',
+	},
+	address: {
+		type: DataTypes.JSONB,
+		allowNull: false,
+		field: 'address',
 	},
 	createdAt: {
 		type: DataTypes.DATE,
