@@ -3,6 +3,7 @@ import '../../../module-alias';
 import { configureDb, configureLogger, configureRoutes } from '@main/config';
 import { createApiResponse } from '@main/middlewares';
 import express, { Express } from 'express';
+import cookieParser from 'cookie-parser';
 
 export const configureApp = async (): Promise<Express> => {
 	const app = express();
@@ -12,6 +13,7 @@ export const configureApp = async (): Promise<Express> => {
 
 	// Setup middlewares
 	app.use(express.json());
+	app.use(cookieParser());
 
 	// Setup routes
 	configureRoutes(app);
