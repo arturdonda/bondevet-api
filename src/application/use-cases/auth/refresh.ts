@@ -10,8 +10,8 @@ export class RefreshSession implements IRefreshSession {
 		private readonly ipService: IIpService
 	) {}
 
-	async exec({ browser, deviceType, ipAddress, refreshToken, userId }: IRefreshSession.Params): IRefreshSession.Result {
-		const session = await this.sessionRepository.getOne({ refreshToken, userId });
+	async exec({ browser, deviceType, ipAddress, refreshToken }: IRefreshSession.Params): IRefreshSession.Result {
+		const session = await this.sessionRepository.getOne({ refreshToken });
 
 		if (!session) throw new NotFoundError('Session');
 

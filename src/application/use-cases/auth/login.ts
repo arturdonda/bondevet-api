@@ -26,7 +26,6 @@ export class Login implements ILogin {
 			browser,
 			deviceType,
 			ipAddress,
-			userId: user.id,
 		});
 
 		return { user, refreshToken, accessToken };

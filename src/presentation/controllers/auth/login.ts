@@ -14,7 +14,7 @@ export class LoginController implements IController {
 			if (!request.body.deviceType) throw new MissingParamError('deviceType');
 
 			const result = await this.service.exec({
-				ipAddress: request.body.ip,
+				ipAddress: request.ip,
 				email: request.body.email,
 				password: request.body.password,
 				browser: request.body.browser,

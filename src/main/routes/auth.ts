@@ -13,7 +13,7 @@ export default (router: Router): void => {
 
 	router.post(`/${prefix}/login`, adaptRoute(loginController));
 
-	router.post(`/${prefix}/refresh`, authorize, adaptRoute(refreshSessionController));
+	router.post(`/${prefix}/refresh`, adaptRoute(refreshSessionController));
 
 	router.post(`/${prefix}/forgot-password`, adaptRoute(forgotPasswordController));
 
