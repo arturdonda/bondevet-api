@@ -175,12 +175,12 @@ export class User {
 	}
 
 	private validateAddress(address: UserParams['address']): UserParams['address'] {
-		if (address.cep) throw new InvalidParamError('address', 'CEP is required');
-		if (address.city) throw new InvalidParamError('address', 'city is required');
-		if (address.neighborhood) throw new InvalidParamError('address', 'neighborhood is required');
-		if (address.number) throw new InvalidParamError('address', 'number is required');
-		if (address.state) throw new InvalidParamError('address', 'state is required');
-		if (address.street) throw new InvalidParamError('address', 'street is required');
+		if (!address.cep) throw new InvalidParamError('address', 'CEP is required');
+		if (!address.city) throw new InvalidParamError('address', 'city is required');
+		if (!address.neighborhood) throw new InvalidParamError('address', 'neighborhood is required');
+		if (!address.number) throw new InvalidParamError('address', 'number is required');
+		if (!address.state) throw new InvalidParamError('address', 'state is required');
+		if (!address.street) throw new InvalidParamError('address', 'street is required');
 
 		return address;
 	}
