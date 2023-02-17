@@ -15,7 +15,11 @@ export class RefreshSession implements IRefreshSession {
 
 		if (!session) throw new NotFoundError('Session');
 
-		const token = this.tokenService.encode({ payload: { user: session.userId }, type: 'ACCESS_TOKEN' });
+		const accessToken = this.tokenService.encode({
+			payload: { user: session.userId },
+			type: 'ACCESS_TOKEN',
+			expiresIn: '15m',
+		});
 
 		const { country, region, city } = await this.ipService.lookup(ipAddress);
 
@@ -31,6 +35,6 @@ export class RefreshSession implements IRefreshSession {
 
 		await this.sessionRepository.update(session);
 
-		return { accessToken: token };
+		return { accessToken };
 	}
 }
