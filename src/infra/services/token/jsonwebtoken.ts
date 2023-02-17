@@ -4,8 +4,8 @@ import { ExpiredTokenError } from '@infra/errors';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
 export class TokenService implements ITokenService {
-	private readonly AUDIENCE = '';
-	private readonly ISSUER = '';
+	private readonly ISSUER = `bondevet-api-${process.env.NODE_ENV}`;
+	private readonly AUDIENCE = `bondevet-platform-${process.env.NODE_ENV}`;
 
 	encode({ payload, type = 'ACCESS_TOKEN', expiresIn }: ITokenService.Encode.Params): ITokenService.Encode.Result {
 		const SECRET = type === 'ACCESS_TOKEN' ? process.env.ACCESS_TOKEN_SECRET : process.env.OTHER_TOKENS_SECRET;
