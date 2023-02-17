@@ -14,11 +14,11 @@ export class UserDTO {
 			phone: dbUser.phone,
 			email: dbUser.email,
 			password: dbUser.password,
-			birthday: dbUser.birthday,
+			birthday: new Date(dbUser.birthday),
 			address: dbUser.address,
-			createdAt: dbUser.createdAt,
-			updatedAt: dbUser.updatedAt,
-			deletedAt: dbUser.deletedAt,
+			createdAt: new Date(dbUser.createdAt),
+			updatedAt: new Date(dbUser.updatedAt),
+			deletedAt: dbUser.deletedAt ? new Date(dbUser.deletedAt) : null,
 		});
 	}
 
