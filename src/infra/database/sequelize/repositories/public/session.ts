@@ -1,7 +1,7 @@
 import { NotFoundError } from '@application/errors';
 import { ISessionRepository } from '@application/protocols/database/repositories';
 import { SessionDTO } from '@infra/database/sequelize/dtos/public';
-import { ModelStatic, Model, WhereOptions, Order, Op } from 'sequelize';
+import { ModelStatic, Model, WhereOptions, Order } from 'sequelize';
 
 export class SessionRepository implements ISessionRepository {
 	constructor(private readonly sessions: ModelStatic<Model>) {}
@@ -66,10 +66,10 @@ export class SessionRepository implements ISessionRepository {
 	};
 
 	private makeGetAllOrder(params: ISessionRepository.GetAll.Params): Order | undefined {
-		if (!params.sortBy || !params.sortDirection) return undefined;
-
 		const order: Order = [];
-		order.push([params.sortBy, params.sortDirection]);
+
+		if (params.sortBy && params.sortDirection) order.push([params.sortBy, params.sortDirection]);
+
 		order.push(['metadata.date', 'DESC']);
 
 		return order;
