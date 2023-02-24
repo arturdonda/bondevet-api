@@ -89,16 +89,12 @@ export class UserRepository implements IUserRepository {
 	};
 
 	private makeGetAllOrder(params: IUserRepository.GetAll.Params): Order | undefined {
-		if (!params.sortBy || !params.sortDirection) return undefined;
-
 		const order: Order = [];
-		if (['city', 'neighborhood', 'state'].includes(params.sortBy)) {
-			order.push(`address.${params.sortBy}`, params.sortDirection);
-		} else {
-			order.push([params.sortBy, params.sortDirection]);
-		}
+
+		if (params.sortBy && params.sortDirection) order.push([params.sortBy, params.sortDirection]);
 
 		order.push(['firstName', 'ASC']);
+		order.push(['lastName', 'ASC']);
 
 		return order;
 	}
