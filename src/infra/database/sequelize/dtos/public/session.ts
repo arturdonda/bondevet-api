@@ -9,7 +9,7 @@ export class SessionDTO {
 			refreshToken: dbSession.refreshToken,
 			csrf: dbSession.csrf,
 			userId: dbSession.userId,
-			metadata: dbSession.metadata,
+			metadata: { ...dbSession.metadata, date: new Date(dbSession.metadata.date) },
 		});
 	}
 
