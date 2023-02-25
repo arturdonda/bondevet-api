@@ -18,6 +18,7 @@ export class InviteUser implements IInviteUser {
 		const inviteToken = this.tokenService.encode({
 			payload: { email, firstName, lastName },
 			type: 'OTHER',
+			expiresIn: '7d',
 		});
 
 		return this.emailService.sendTemplate.invite({
