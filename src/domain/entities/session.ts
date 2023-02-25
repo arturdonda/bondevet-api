@@ -3,7 +3,7 @@ export class Session {
 	private _refreshToken: string;
 	private _csrf: string;
 	private _userId: string;
-	private _metadata: SessionMetadata;
+	private _metadata: SessionParams['metadata'];
 
 	constructor(params: SessionParams) {
 		this._id = params.id;
@@ -42,26 +42,24 @@ export class Session {
 	//#endregion Getters
 
 	//#region Setters
-	set metadata(metadata: SessionMetadata) {
+	set metadata(metadata: SessionParams['metadata']) {
 		this._metadata = metadata;
 	}
 	//#endregion Setters
 }
 
-export type SessionParams = {
+type SessionParams = {
 	id: string;
 	refreshToken: string;
 	csrf: string;
 	userId: string;
-	metadata: SessionMetadata;
-};
-
-export type SessionMetadata = {
-	ipAddress: string;
-	country: { code: string; name: string };
-	region: { code: string; name: string };
-	city: string;
-	deviceType: 'mobile' | 'tablet' | 'desktop';
-	browser: string;
-	date: Date;
+	metadata: {
+		ipAddress: string;
+		country: { code: string; name: string };
+		region: { code: string; name: string };
+		city: string;
+		deviceType: 'mobile' | 'tablet' | 'desktop';
+		browser: string;
+		date: Date;
+	};
 };

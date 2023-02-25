@@ -9,10 +9,10 @@ export class SessionRepository implements ISessionRepository {
 	getAll(params: ISessionRepository.GetAll.Params): ISessionRepository.GetAll.Result {
 		return this.sessions
 			.findAndCountAll({
-				where: this.makeGetAllFilters(params),
-				order: this.makeGetAllOrder(params),
-				offset: this.makeGetAllOffset(params),
-				limit: this.makeGetAllLimit(params),
+				where: this.makeWhereClause(params),
+				order: this.makeOrderClause(params),
+				offset: this.makeOffsetClause(params),
+				limit: this.makeLimitClause(params),
 			})
 			.then(result => ({
 				pageSize: params.pageSize,
@@ -62,11 +62,12 @@ export class SessionRepository implements ISessionRepository {
 		return this.sessions.destroy({ where: userId }).then(() => {});
 	}
 
-	private makeGetAllFilters = (params: ISessionRepository.GetAll.Params): WhereOptions | undefined => {
+	//#region Clauses
+	private makeWhereClause = (params: ISessionRepository.GetAll.Params): WhereOptions | undefined => {
 		return { userId: params.userId };
 	};
 
-	private makeGetAllOrder(params: ISessionRepository.GetAll.Params): Order | undefined {
+	private makeOrderClause(params: ISessionRepository.GetAll.Params): Order | undefined {
 		const order: Order = [];
 
 		if (params.sortBy && params.sortDirection) order.push([params.sortBy, params.sortDirection]);
@@ -76,16 +77,17 @@ export class SessionRepository implements ISessionRepository {
 		return order;
 	}
 
-	private makeGetAllOffset(params: ISessionRepository.GetAll.Params): number | undefined {
+	private makeOffsetClause(params: ISessionRepository.GetAll.Params): number | undefined {
 		if (params.pageNumber === undefined || params.pageNumber <= 0) return undefined;
 		if (params.pageSize === undefined || params.pageSize <= 0) return undefined;
 
 		return (params.pageNumber - 1) * params.pageSize;
 	}
 
-	private makeGetAllLimit(params: ISessionRepository.GetAll.Params): number | undefined {
+	private makeLimitClause(params: ISessionRepository.GetAll.Params): number | undefined {
 		if (params.pageSize === undefined || params.pageSize <= 0) return undefined;
 
 		return params.pageSize;
 	}
+	//#endregion Clauses
 }
