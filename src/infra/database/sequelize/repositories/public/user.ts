@@ -54,6 +54,8 @@ export class UserRepository implements IUserRepository {
 					email: user.email,
 					password: user.password,
 					address: user.address,
+					updatedAt: user.updatedAt,
+					deletedAt: user.deletedAt,
 				},
 				{ where: { id: user.id }, returning: true }
 			)
