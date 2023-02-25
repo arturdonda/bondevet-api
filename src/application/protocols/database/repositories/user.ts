@@ -9,18 +9,11 @@ export interface IUserRepository {
 
 export namespace IUserRepository {
 	export namespace GetAll {
-		export type Params = PageParams<User> &
-			Partial<
-				Pick<User, 'cpf' | 'email' | 'phone' | 'rg'> & {
-					birthdayFrom: Date;
-					birthdayTo: Date;
-					name: string;
-				} & Pick<Address, 'city' | 'state' | 'neighborhood'>
-			>;
+		export type Params = PageParams<User> & Omit<UserFilters, 'id'>;
 		export type Result = Promise<Page<User>>;
 	}
 	export namespace GetOne {
-		export type Params = Partial<Pick<User, 'id' | 'cpf' | 'rg' | 'phone' | 'email'>>;
+		export type Params = Pick<UserFilters, 'id' | 'cpf' | 'rg' | 'phone' | 'email' | 'includeDeleted'>;
 		export type Result = Promise<User | null>;
 	}
 	export namespace Create {
@@ -31,4 +24,12 @@ export namespace IUserRepository {
 		export type Params = User;
 		export type Result = Promise<User>;
 	}
+	export type UserFilters = Partial<
+		Pick<User, 'id' | 'cpf' | 'rg' | 'phone' | 'email'> &
+			Pick<Address, 'city' | 'state' | 'neighborhood'> & {
+				includeDeleted: boolean;
+				birthday: [Date, Date];
+				name: string;
+			}
+	>;
 }

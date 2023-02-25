@@ -11,13 +11,13 @@ export class UpdateUser implements IUpdateUser {
 		if (!user) throw new NotFoundError('User');
 
 		if (email) {
-			if (await this.userRepository.getOne({ email })) throw new UserRegisteredError('email');
+			if (await this.userRepository.getOne({ email, includeDeleted: true })) throw new UserRegisteredError('email');
 
 			user.email = email;
 		}
 
 		if (phone) {
-			if (await this.userRepository.getOne({ phone })) throw new UserRegisteredError('phone');
+			if (await this.userRepository.getOne({ phone, includeDeleted: true })) throw new UserRegisteredError('phone');
 
 			user.phone = phone;
 		}

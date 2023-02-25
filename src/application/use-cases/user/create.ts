@@ -12,10 +12,10 @@ export class CreateUser implements ICreateUser {
 	) {}
 
 	async exec(params: ICreateUser.Params): ICreateUser.Result {
-		if (await this.userRepository.getOne({ cpf: params.cpf })) throw new UserRegisteredError('CPF');
-		if (await this.userRepository.getOne({ rg: params.rg })) throw new UserRegisteredError('RG');
-		if (await this.userRepository.getOne({ phone: params.phone })) throw new UserRegisteredError('Phone');
-		if (await this.userRepository.getOne({ email: params.email })) throw new UserRegisteredError('Email');
+		if (await this.userRepository.getOne({ cpf: params.cpf, includeDeleted: true })) throw new UserRegisteredError('CPF');
+		if (await this.userRepository.getOne({ rg: params.rg, includeDeleted: true })) throw new UserRegisteredError('RG');
+		if (await this.userRepository.getOne({ phone: params.phone, includeDeleted: true })) throw new UserRegisteredError('Phone');
+		if (await this.userRepository.getOne({ email: params.email, includeDeleted: true })) throw new UserRegisteredError('Email');
 
 		const decoded = this.tokenService.decode({ token: params.inviteToken, type: 'OTHER' }) as InviteToken;
 

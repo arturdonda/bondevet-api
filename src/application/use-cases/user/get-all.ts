@@ -11,6 +11,7 @@ export class GetAllUsers implements IGetAllUsers {
 		return this.userRepository.getAll({
 			...params,
 			...pageParams,
+			birthday: params.birthdayFrom && params.birthdayTo ? [params.birthdayFrom, params.birthdayTo] : undefined,
 			sortBy: params?.sortBy ?? 'firstName',
 			sortDirection: params?.sortDirection ?? 'ASC',
 		});

@@ -205,7 +205,7 @@ export class User {
 	//#endregion Validations
 }
 
-export type UserParams = {
+type UserParams = {
 	id: string;
 	firstName: string;
 	lastName: string;

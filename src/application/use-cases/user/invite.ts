@@ -11,7 +11,7 @@ export class InviteUser implements IInviteUser {
 	) {}
 
 	async exec({ email, firstName, lastName }: IInviteUser.Params): IInviteUser.Result {
-		const user = await this.userRepository.getOne({ email });
+		const user = await this.userRepository.getOne({ email, includeDeleted: true });
 
 		if (user) throw new UserRegisteredError('Email');
 
