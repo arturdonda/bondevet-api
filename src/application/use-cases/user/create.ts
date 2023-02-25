@@ -1,14 +1,15 @@
 import { User } from '@domain/entities';
 import { ICreateUser } from '@domain/use-cases/user';
 import { IDatabase } from '@application/protocols/database';
-import { ITokenService, IUuidService } from '@application/protocols/services';
+import { IHashService, ITokenService, IUuidService } from '@application/protocols/services';
 import { InvalidTokenError, UserRegisteredError } from '@application/errors';
 
 export class CreateUser implements ICreateUser {
 	constructor(
 		private readonly userRepository: IDatabase.Repositories.User,
 		private readonly uuidService: IUuidService,
-		private readonly tokenService: ITokenService
+		private readonly tokenService: ITokenService,
+		private readonly hashService: IHashService
 	) {}
 
 	async exec(params: ICreateUser.Params): ICreateUser.Result {
@@ -29,7 +30,7 @@ export class CreateUser implements ICreateUser {
 			rg: params.rg,
 			phone: params.phone,
 			email: params.email,
-			password: params.password,
+			password: this.hashService.hash(params.password),
 			birthday: params.birthday,
 			address: params.address,
 		});
