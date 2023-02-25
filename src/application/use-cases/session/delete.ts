@@ -5,11 +5,11 @@ import { NotFoundError } from '@application/errors';
 export class DeleteSession implements IDeleteSession {
 	constructor(private readonly sessionRepository: IDatabase.Repositories.Session) {}
 
-	async exec({ refreshToken, userId }: IDeleteSession.Params): IDeleteSession.Result {
-		const session = await this.sessionRepository.getOne({ refreshToken, userId });
+	async exec({ id, userId }: IDeleteSession.Params): IDeleteSession.Result {
+		const session = await this.sessionRepository.getOne({ id });
 
-		if (!session) throw new NotFoundError('Session');
+		if (session?.userId !== userId) throw new NotFoundError('Session');
 
-		await this.sessionRepository.delete({ refreshToken });
+		await this.sessionRepository.delete({ refreshToken: session.refreshToken });
 	}
 }

@@ -29,6 +29,7 @@ export class SessionRepository implements ISessionRepository {
 	create(params: ISessionRepository.Create.Params): ISessionRepository.Create.Result {
 		return this.sessions
 			.create({
+				id: params.id,
 				refreshToken: params.refreshToken,
 				csrf: params.csrf,
 				userId: params.userId,

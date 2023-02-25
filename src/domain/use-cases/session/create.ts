@@ -5,6 +5,6 @@ export interface ICreateSession {
 }
 
 export namespace ICreateSession {
-	export type Params = Pick<SessionMetadata, 'browser' | 'deviceType' | 'ipAddress'> & Pick<Session, 'userId'>;
+	export type Params = Pick<Session, 'userId'> & Pick<SessionMetadata, 'browser' | 'deviceType' | 'ipAddress'>;
 	export type Result = Promise<Session>;
 }

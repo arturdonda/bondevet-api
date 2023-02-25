@@ -8,5 +8,5 @@ export default (router: Router): void => {
 
 	router.get(`/${prefix}`, authorize, adaptRoute(getAllSessionsController));
 
-	router.delete(`/${prefix}/:refreshToken`, authorize, adaptRoute(deleteSessionController));
+	router.delete(`/${prefix}/:sessionId`, authorize, adaptRoute(deleteSessionController));
 };

@@ -1,4 +1,5 @@
 import { Page, PageParams, Session, User } from '@domain/entities';
+import { Choose } from '@domain/utility-types';
 
 export interface ISessionRepository {
 	getAll: (params: ISessionRepository.GetAll.Params) => ISessionRepository.GetAll.Result;
@@ -15,7 +16,7 @@ export namespace ISessionRepository {
 		export type Result = Promise<Page<Session>>;
 	}
 	export namespace GetOne {
-		export type Params = Pick<Session, 'refreshToken'> & Partial<Pick<Session, 'userId'>>;
+		export type Params = Choose<Session, 'id', 'refreshToken'>;
 		export type Result = Promise<Session | null>;
 	}
 	export namespace Create {

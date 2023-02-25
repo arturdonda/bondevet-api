@@ -1,7 +1,7 @@
 import { Page, Session } from '@domain/entities';
 
 export class SessionViewModel {
-	private readonly refreshToken: string;
+	private readonly id: string;
 	private readonly ipAddress: string;
 	private readonly date: string;
 	private readonly browser: string;
@@ -13,7 +13,7 @@ export class SessionViewModel {
 	private readonly city: string;
 
 	constructor(params: Session) {
-		this.refreshToken = params.refreshToken;
+		this.id = params.id;
 		this.ipAddress = params.metadata.ipAddress;
 		this.date = params.metadata.date.toISOString();
 		this.browser = params.metadata.browser;

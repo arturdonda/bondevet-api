@@ -5,6 +5,6 @@ export interface IDeleteSession {
 }
 
 export namespace IDeleteSession {
-	export type Params = Pick<Session, 'refreshToken' | 'userId'>;
+	export type Params = Pick<Session, 'id' | 'userId'>;
 	export type Result = Promise<void>;
 }

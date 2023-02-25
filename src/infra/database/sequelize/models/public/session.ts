@@ -1,9 +1,15 @@
 import { DataTypes, ModelAttributes } from 'sequelize';
 
 export const sessionModel: ModelAttributes = {
-	refreshToken: {
+	id: {
 		type: DataTypes.STRING(32),
 		primaryKey: true,
+		allowNull: false,
+		unique: true,
+		field: 'id',
+	},
+	refreshToken: {
+		type: DataTypes.STRING(32),
 		allowNull: false,
 		unique: true,
 		field: 'refresh_token',

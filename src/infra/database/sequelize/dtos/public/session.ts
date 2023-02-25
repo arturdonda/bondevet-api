@@ -6,6 +6,7 @@ export class SessionDTO {
 		const dbSession = model.get();
 
 		return new Session({
+			id: dbSession.id,
 			refreshToken: dbSession.refreshToken,
 			csrf: dbSession.csrf,
 			userId: dbSession.userId,

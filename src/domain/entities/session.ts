@@ -1,10 +1,12 @@
 export class Session {
+	private _id: string;
 	private _refreshToken: string;
 	private _csrf: string;
 	private _userId: string;
 	private _metadata: SessionMetadata;
 
 	constructor(params: SessionParams) {
+		this._id = params.id;
 		this._refreshToken = params.refreshToken;
 		this._csrf = params.csrf;
 		this._userId = params.userId;
@@ -18,6 +20,10 @@ export class Session {
 	//#endregion Methods
 
 	//#region Getters
+	get id(): SessionParams['id'] {
+		return this._id;
+	}
+
 	get refreshToken(): SessionParams['refreshToken'] {
 		return this._refreshToken;
 	}
@@ -43,6 +49,7 @@ export class Session {
 }
 
 export type SessionParams = {
+	id: string;
 	refreshToken: string;
 	csrf: string;
 	userId: string;
