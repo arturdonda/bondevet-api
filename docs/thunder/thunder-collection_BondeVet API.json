@@ -1,7 +1,7 @@
 {
 	"client": "Thunder Client",
 	"collectionName": "BondeVet API",
-	"dateExported": "2023-02-15T03:43:55.744Z",
+	"dateExported": "2023-02-25T21:51:24.046Z",
 	"version": "1.1",
 	"folders": [
 		{
@@ -90,15 +90,28 @@
 			"method": "POST",
 			"sortNum": 30000,
 			"created": "2023-02-15T02:59:13.913Z",
-			"modified": "2023-02-15T03:40:33.540Z",
+			"modified": "2023-02-17T01:34:49.291Z",
 			"headers": [],
 			"params": [],
 			"body": {
 				"type": "json",
-				"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"password\": \"John#123\",\n  \"browser\": \"chrome\",\n  \"deviceType\": \"laptop\"\n}",
+				"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"password\": \"John#123\",\n  \"browser\": \"Thunder Client\",\n  \"deviceType\": \"laptop\"\n}",
 				"form": []
 			},
-			"tests": []
+			"tests": [
+				{
+					"type": "set-env-var",
+					"custom": "cookie.refreshtoken",
+					"action": "setto",
+					"value": "{{refreshToken}}"
+				},
+				{
+					"type": "set-env-var",
+					"custom": "header.authorization",
+					"action": "setto",
+					"value": "{{accessToken}}"
+				}
+			]
 		},
 		{
 			"_id": "f86920c9-9d2f-4085-8875-6d717db94479",
@@ -109,15 +122,27 @@
 			"method": "POST",
 			"sortNum": 40000,
 			"created": "2023-02-15T02:59:37.897Z",
-			"modified": "2023-02-15T03:40:44.778Z",
-			"headers": [],
+			"modified": "2023-02-25T21:08:05.343Z",
+			"headers": [
+				{
+					"name": "Cookie",
+					"value": "refreshToken={{refreshToken}}"
+				}
+			],
 			"params": [],
 			"body": {
 				"type": "json",
 				"raw": "{\n  \"browser\": \"chrome\",\n  \"deviceType\": \"laptop\"\n}",
 				"form": []
 			},
-			"tests": []
+			"tests": [
+				{
+					"type": "set-env-var",
+					"custom": "header.authorization",
+					"action": "setto",
+					"value": "{{accessToken}}"
+				}
+			]
 		},
 		{
 			"_id": "9d658d06-7ac9-410d-8eb3-760f899e817b",
@@ -182,15 +207,15 @@
 			"colId": "aab67f98-103c-4bb2-9d47-901841f377fd",
 			"containerId": "ba8a78ab-eee0-424e-9298-6312d2edac4c",
 			"name": "Delete Session",
-			"url": "{{base_url}}/sessions/{refreshToken}",
+			"url": "{{base_url}}/sessions/{sessionId}",
 			"method": "DELETE",
 			"sortNum": 50000,
 			"created": "2023-02-15T03:01:45.821Z",
-			"modified": "2023-02-15T03:39:57.684Z",
+			"modified": "2023-02-25T21:50:57.534Z",
 			"headers": [],
 			"params": [
 				{
-					"name": "refreshToken",
+					"name": "sessionId",
 					"value": "abc123",
 					"isPath": true
 				}
@@ -428,6 +453,10 @@
 	],
 	"settings": {
 		"headers": [],
+		"auth": {
+			"type": "bearer",
+			"bearer": "{{accessToken}}"
+		},
 		"tests": [],
 		"envId": "3078a09f-ea31-4e61-8ad1-488ca1363313"
 	}

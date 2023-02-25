@@ -47,7 +47,7 @@
 									"language": "json"
 								}
 							},
-							"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"password\": \"John#123\",\n  \"browser\": \"chrome\",\n  \"deviceType\": \"laptop\"\n}"
+							"raw": "{\n  \"email\": \"john_doe@example.com\",\n  \"password\": \"John#123\",\n  \"browser\": \"Thunder Client\",\n  \"deviceType\": \"laptop\"\n}"
 						}
 					}
 				},
@@ -60,6 +60,12 @@
 							"path": ["auth", "refresh"],
 							"host": ["{{base_url}}"]
 						},
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "refreshToken={{refreshToken}}"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"options": {
@@ -155,15 +161,15 @@
 					"request": {
 						"method": "DELETE",
 						"url": {
-							"raw": "{{base_url}}/sessions/:refreshToken",
+							"raw": "{{base_url}}/sessions/:sessionId",
 							"query": [],
 							"variable": [
 								{
-									"key": "refreshToken",
+									"key": "sessionId",
 									"value": "abc123"
 								}
 							],
-							"path": ["sessions", ":refreshToken"],
+							"path": ["sessions", ":sessionId"],
 							"host": ["{{base_url}}"]
 						}
 					}
@@ -391,5 +397,15 @@
 				}
 			}
 		}
-	]
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{accessToken}}",
+				"type": "string"
+			}
+		]
+	}
 }
