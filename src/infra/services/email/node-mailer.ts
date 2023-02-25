@@ -23,8 +23,8 @@ export class EmailService implements IEmailService {
 
 	get sendTemplate() {
 		return {
-			invite: this.invite,
-			resetPassword: this.resetPassword,
+			invite: this.invite.bind(this),
+			resetPassword: this.resetPassword.bind(this),
 		};
 	}
 
