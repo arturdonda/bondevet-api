@@ -1,4 +1,5 @@
 import { IChangeUserPassword } from '@domain/use-cases/user';
+import { validatePassword } from '@domain/helpers';
 import { NotFoundError } from '@application/errors';
 import { IDatabase } from '@application/protocols/database';
 import { IHashService } from '@application/protocols/services';
@@ -14,7 +15,7 @@ export class ChangeUserPassword implements IChangeUserPassword {
 
 		if (!user) throw new NotFoundError('User');
 
-		user.password = this.hashService.hash(password);
+		user.password = this.hashService.hash(validatePassword(password));
 
 		await this.userRepository.update(user);
 	}

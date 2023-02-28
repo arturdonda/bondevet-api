@@ -1,5 +1,6 @@
 import { User } from '@domain/entities';
 import { ICreateUser } from '@domain/use-cases/user';
+import { validatePassword } from '@domain/helpers';
 import { IDatabase } from '@application/protocols/database';
 import { IHashService, ITokenService, IUuidService } from '@application/protocols/services';
 import { InvalidTokenError, UserRegisteredError } from '@application/errors';
@@ -30,7 +31,7 @@ export class CreateUser implements ICreateUser {
 			rg: params.rg,
 			phone: params.phone,
 			email: params.email,
-			password: this.hashService.hash(params.password),
+			password: this.hashService.hash(validatePassword(params.password)),
 			birthday: params.birthday,
 			address: params.address,
 		});
