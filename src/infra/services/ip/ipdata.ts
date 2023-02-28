@@ -1,4 +1,3 @@
-import { isIpValid } from '@domain/helpers';
 import { IIpService } from '@application/protocols/services';
 import { InvalidIpError } from '@infra/errors';
 import IPData from 'ipdata';
@@ -11,8 +10,6 @@ export class IpService implements IIpService {
 	}
 
 	lookup = async (ipAddress: IIpService.Lookup.Params): IIpService.Lookup.Result => {
-		if (!isIpValid(ipAddress)) throw new InvalidIpError(ipAddress);
-
 		const result = await this._ipdataClient.lookup(ipAddress);
 
 		if (result.status === 400) throw new InvalidIpError(ipAddress);
