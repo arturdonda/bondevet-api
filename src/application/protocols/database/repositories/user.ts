@@ -28,7 +28,7 @@ export namespace IUserRepository {
 		Pick<User, 'id' | 'cpf' | 'rg' | 'phone' | 'email'> &
 			Pick<Address, 'city' | 'state' | 'neighborhood'> & {
 				includeDeleted: boolean;
-				birthday: [Date, Date];
+				birthday: [string, string];
 				name: string;
 			}
 	>;

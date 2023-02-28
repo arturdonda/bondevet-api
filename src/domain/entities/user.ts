@@ -1,5 +1,5 @@
 import { Address } from '@domain/entities';
-import { validateCEP, validateCPF, validateEmail, validatePhone } from '@domain/helpers';
+import { validateBirthday, validateCEP, validateCPF, validateEmail, validatePhone } from '@domain/helpers';
 import { InvalidParamError } from '@domain/errors';
 
 export class User {
@@ -11,7 +11,7 @@ export class User {
 	private _phone: string;
 	private _email: string;
 	private _password: string;
-	private _birthday: Date;
+	private _birthday: string;
 	private _address: Address;
 	private _createdAt: Date;
 	private _updatedAt: Date;
@@ -75,7 +75,7 @@ export class User {
 		return this._password;
 	}
 
-	get birthday(): Date {
+	get birthday(): string {
 		return this._birthday;
 	}
 
@@ -161,9 +161,7 @@ export class User {
 	}
 
 	private validateBirthday(birthday: UserParams['birthday']): UserParams['birthday'] {
-		if (birthday >= new Date()) throw new InvalidParamError('birthday', 'future date');
-
-		return birthday;
+		return validateBirthday(birthday);
 	}
 
 	private validateAddress(address: UserParams['address']): UserParams['address'] {
@@ -206,7 +204,7 @@ type UserParams = {
 	phone: string;
 	email: string;
 	password: string;
-	birthday: Date;
+	birthday: string;
 	address: Address;
 	createdAt?: Date;
 	updatedAt?: Date;

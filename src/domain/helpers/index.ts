@@ -1,3 +1,4 @@
+export * from './validate-birthday';
 export * from './validate-cep';
 export * from './validate-cpf';
 export * from './validate-email';

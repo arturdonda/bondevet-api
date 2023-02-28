@@ -14,7 +14,7 @@ export class UserDTO {
 			phone: dbUser.phone,
 			email: dbUser.email,
 			password: dbUser.password,
-			birthday: new Date(dbUser.birthday),
+			birthday: dbUser.birthday,
 			address: dbUser.address,
 			createdAt: new Date(dbUser.createdAt),
 			updatedAt: new Date(dbUser.updatedAt),

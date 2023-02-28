@@ -8,8 +8,8 @@ export namespace IGetAllUsers {
 	export type Params = Partial<PageParams<User>> &
 		Partial<
 			Pick<User, 'cpf' | 'email' | 'phone' | 'rg'> & {
-				birthdayFrom: Date;
-				birthdayTo: Date;
+				birthdayFrom: string;
+				birthdayTo: string;
 				name: string;
 			} & Pick<Address, 'city' | 'state' | 'neighborhood'>
 		>;

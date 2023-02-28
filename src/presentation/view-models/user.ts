@@ -23,7 +23,7 @@ export class UserViewModel {
 		this.rg = fullInfo ? params.rg : undefined;
 		this.phone = params.phone;
 		this.email = params.email;
-		this.birthday = params.birthday.toISOString();
+		this.birthday = params.birthday;
 		this.address = fullInfo ? AddressViewModel.map(params.address) : undefined;
 		this.createdAt = fullInfo ? params.createdAt.toISOString() : undefined;
 		this.updatedAt = fullInfo ? params.updatedAt.toISOString() : undefined;
