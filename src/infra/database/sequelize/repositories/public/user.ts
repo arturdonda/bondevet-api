@@ -74,8 +74,8 @@ export class UserRepository implements IUserRepository {
 
 		if (params.id) filters.push({ id: params.id });
 		if (params.cpf) filters.push({ cpf: { [Op.iLike]: `%${params.cpf.replace(/\D/g, '')}%` } });
-		if (params.rg) filters.push({ rg: { [Op.iLike]: `%${params.rg}%` } });
-		if (params.phone) filters.push({ phone: { [Op.iLike]: `%${params.phone}%` } });
+		if (params.rg) filters.push({ rg: { [Op.iLike]: `%${params.rg.replace(/\W/g, '')}%` } });
+		if (params.phone) filters.push({ phone: { [Op.iLike]: `%${params.phone.replace(/\D/g, '')}%` } });
 		if (params.email) filters.push({ email: { [Op.iLike]: `%${params.email}%` } });
 		if (params.city) filters.push({ 'address.city': { [Op.iLike]: `%${params.city}%` } });
 		if (params.state) filters.push({ 'address.state': { [Op.iLike]: `%${params.state}%` } });
