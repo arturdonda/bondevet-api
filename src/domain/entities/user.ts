@@ -1,5 +1,5 @@
 import { Address } from '@domain/entities';
-import { isCPFValid, isEmailValid } from '@domain/helpers';
+import { validateCEP, validateCPF, validateEmail, validatePhone } from '@domain/helpers';
 import { InvalidParamError } from '@domain/errors';
 
 export class User {
@@ -141,9 +141,7 @@ export class User {
 	}
 
 	private validateCpf(cpf: UserParams['cpf']): UserParams['cpf'] {
-		if (!isCPFValid(cpf)) throw new InvalidParamError('CPF', 'invalid CPF number');
-
-		return cpf.replace(/\D/g, '');
+		return validateCPF(cpf);
 	}
 
 	private validateRg(rg: UserParams['rg']): UserParams['rg'] {
@@ -151,21 +149,15 @@ export class User {
 	}
 
 	private validatePhone(phone: UserParams['phone']): UserParams['phone'] {
-		phone = phone.replace(/\D/g, '');
-
-		if (phone.length !== 11) throw new InvalidParamError('phone', 'must be 11 characters long');
-
-		return phone;
+		return validatePhone(phone);
 	}
 
 	private validateEmail(email: UserParams['email']): UserParams['email'] {
-		if (!isEmailValid(email)) throw new InvalidParamError('email', 'invalid email format');
-
-		return email.trim().toLowerCase();
+		return validateEmail(email);
 	}
 
 	private validatePassword(password: UserParams['password']): UserParams['password'] {
-		return password;
+		return password; // won't validate because it's encrypted!
 	}
 
 	private validateBirthday(birthday: UserParams['birthday']): UserParams['birthday'] {
@@ -182,7 +174,7 @@ export class User {
 		if (!address.state) throw new InvalidParamError('address', 'state is required');
 		if (!address.street) throw new InvalidParamError('address', 'street is required');
 
-		return address;
+		return { ...address, cep: validateCEP(address.cep) };
 	}
 
 	private validateCreatedAt(createdAt: UserParams['createdAt']): NonNullable<UserParams['updatedAt']> {

@@ -1,7 +1,9 @@
-export function isCPFValid(cpf: string): boolean {
+import { InvalidParamError } from '@domain/errors';
+
+export function validateCPF(cpf: string): string {
 	cpf = cpf.replace(/\D/g, '');
 
-	if (cpf.length !== 11) return false;
+	if (cpf.length !== 11) throw new InvalidParamError('CPF', 'must contain 11 digits');
 
 	let digits = cpf.split('').map(x => parseInt(x));
 
@@ -13,7 +15,7 @@ export function isCPFValid(cpf: string): boolean {
 			10) %
 		11;
 
-	if (firstDigit !== digits[9] || secondDigit !== digits[10]) return false;
+	if (firstDigit !== digits[9] || secondDigit !== digits[10]) throw new InvalidParamError('CPF', 'invalid number');
 
-	return true;
+	return cpf;
 }
